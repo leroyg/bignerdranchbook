@@ -1,0 +1,283 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A5A45C7149A9FED001E65A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5A45C6149A9FED001E65A3 /* UIKit.framework */; };
+		9A5A45C9149A9FED001E65A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5A45C8149A9FED001E65A3 /* Foundation.framework */; };
+		9A5A45CB149A9FED001E65A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5A45CA149A9FED001E65A3 /* CoreGraphics.framework */; };
+		9A5A45D1149A9FED001E65A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A5A45CF149A9FED001E65A3 /* InfoPlist.strings */; };
+		9A5A45D3149A9FED001E65A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5A45D2149A9FED001E65A3 /* main.m */; };
+		9A5A45D7149A9FED001E65A3 /* QuizAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5A45D6149A9FED001E65A3 /* QuizAppDelegate.m */; };
+		9A5A45D9149A9FED001E65A3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5A45D8149A9FED001E65A3 /* MainWindow.xib */; };
+		9ABFBB70149AFC4700A99BA0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFBB6F149AFC4700A99BA0 /* Icon.png */; };
+		9ABFBB72149BA74800A99BA0 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFBB71149BA74800A99BA0 /* Icon@2x.png */; };
+		9ABFBB74149C0CD800A99BA0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFBB73149C0CD800A99BA0 /* Default@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9A5A45C2149A9FED001E65A3 /* Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A5A45C6149A9FED001E65A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9A5A45C8149A9FED001E65A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9A5A45CA149A9FED001E65A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9A5A45CE149A9FED001E65A3 /* Quiz-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quiz-Info.plist"; sourceTree = "<group>"; };
+		9A5A45D0149A9FED001E65A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9A5A45D2149A9FED001E65A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9A5A45D4149A9FED001E65A3 /* Quiz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Quiz-Prefix.pch"; sourceTree = "<group>"; };
+		9A5A45D5149A9FED001E65A3 /* QuizAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuizAppDelegate.h; sourceTree = "<group>"; };
+		9A5A45D6149A9FED001E65A3 /* QuizAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuizAppDelegate.m; sourceTree = "<group>"; };
+		9A5A45D8149A9FED001E65A3 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		9ABFBB6C149AFC2400A99BA0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9ABFBB6F149AFC4700A99BA0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		9ABFBB71149BA74800A99BA0 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		9ABFBB73149C0CD800A99BA0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A5A45BF149A9FED001E65A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A5A45C7149A9FED001E65A3 /* UIKit.framework in Frameworks */,
+				9A5A45C9149A9FED001E65A3 /* Foundation.framework in Frameworks */,
+				9A5A45CB149A9FED001E65A3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A5A45B7149A9FED001E65A3 = {
+			isa = PBXGroup;
+			children = (
+				9ABFBB73149C0CD800A99BA0 /* Default@2x.png */,
+				9ABFBB71149BA74800A99BA0 /* Icon@2x.png */,
+				9ABFBB6F149AFC4700A99BA0 /* Icon.png */,
+				9ABFBB6C149AFC2400A99BA0 /* Default.png */,
+				9A5A45CC149A9FED001E65A3 /* Quiz */,
+				9A5A45C5149A9FED001E65A3 /* Frameworks */,
+				9A5A45C3149A9FED001E65A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A5A45C3149A9FED001E65A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A5A45C2149A9FED001E65A3 /* Quiz.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A5A45C5149A9FED001E65A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A5A45C6149A9FED001E65A3 /* UIKit.framework */,
+				9A5A45C8149A9FED001E65A3 /* Foundation.framework */,
+				9A5A45CA149A9FED001E65A3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A5A45CC149A9FED001E65A3 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				9A5A45D5149A9FED001E65A3 /* QuizAppDelegate.h */,
+				9A5A45D6149A9FED001E65A3 /* QuizAppDelegate.m */,
+				9A5A45D8149A9FED001E65A3 /* MainWindow.xib */,
+				9A5A45CD149A9FED001E65A3 /* Supporting Files */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		9A5A45CD149A9FED001E65A3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A5A45CE149A9FED001E65A3 /* Quiz-Info.plist */,
+				9A5A45CF149A9FED001E65A3 /* InfoPlist.strings */,
+				9A5A45D2149A9FED001E65A3 /* main.m */,
+				9A5A45D4149A9FED001E65A3 /* Quiz-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9A5A45C1149A9FED001E65A3 /* Quiz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A5A45DC149A9FEE001E65A3 /* Build configuration list for PBXNativeTarget "Quiz" */;
+			buildPhases = (
+				9A5A45BE149A9FED001E65A3 /* Sources */,
+				9A5A45BF149A9FED001E65A3 /* Frameworks */,
+				9A5A45C0149A9FED001E65A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Quiz;
+			productName = Quiz;
+			productReference = 9A5A45C2149A9FED001E65A3 /* Quiz.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A5A45B9149A9FED001E65A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Thunderbolt Labs";
+			};
+			buildConfigurationList = 9A5A45BC149A9FED001E65A3 /* Build configuration list for PBXProject "Quiz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9A5A45B7149A9FED001E65A3;
+			productRefGroup = 9A5A45C3149A9FED001E65A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A5A45C1149A9FED001E65A3 /* Quiz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A5A45C0149A9FED001E65A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A5A45D1149A9FED001E65A3 /* InfoPlist.strings in Resources */,
+				9A5A45D9149A9FED001E65A3 /* MainWindow.xib in Resources */,
+				9ABFBB70149AFC4700A99BA0 /* Icon.png in Resources */,
+				9ABFBB72149BA74800A99BA0 /* Icon@2x.png in Resources */,
+				9ABFBB74149C0CD800A99BA0 /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A5A45BE149A9FED001E65A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A5A45D3149A9FED001E65A3 /* main.m in Sources */,
+				9A5A45D7149A9FED001E65A3 /* QuizAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9A5A45CF149A9FED001E65A3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A5A45D0149A9FED001E65A3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9A5A45DA149A9FEE001E65A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A5A45DB149A9FEE001E65A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9A5A45DD149A9FEE001E65A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quiz/Quiz-Prefix.pch";
+				INFOPLIST_FILE = "Quiz/Quiz-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9A5A45DE149A9FEE001E65A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quiz/Quiz-Prefix.pch";
+				INFOPLIST_FILE = "Quiz/Quiz-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A5A45BC149A9FED001E65A3 /* Build configuration list for PBXProject "Quiz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A5A45DA149A9FEE001E65A3 /* Debug */,
+				9A5A45DB149A9FEE001E65A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A5A45DC149A9FEE001E65A3 /* Build configuration list for PBXNativeTarget "Quiz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A5A45DD149A9FEE001E65A3 /* Debug */,
+				9A5A45DE149A9FEE001E65A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A5A45B9149A9FED001E65A3 /* Project object */;
+}
