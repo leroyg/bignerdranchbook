@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A6AB335149C1F010043163F /* Posession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB334149C1F010043163F /* Posession.m */; };
 		9ABFBB85149C114100A99BA0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABFBB84149C114100A99BA0 /* Foundation.framework */; };
 		9ABFBB88149C114100A99BA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABFBB87149C114100A99BA0 /* main.m */; };
 		9ABFBB8C149C114100A99BA0 /* RandomPosessions.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9ABFBB8B149C114100A99BA0 /* RandomPosessions.1 */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9A6AB333149C1F010043163F /* Posession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Posession.h; sourceTree = "<group>"; };
+		9A6AB334149C1F010043163F /* Posession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Posession.m; sourceTree = "<group>"; };
 		9ABFBB80149C114000A99BA0 /* RandomPosessions */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RandomPosessions; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ABFBB84149C114100A99BA0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9ABFBB87149C114100A99BA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				9ABFBB87149C114100A99BA0 /* main.m */,
+				9A6AB333149C1F010043163F /* Posession.h */,
+				9A6AB334149C1F010043163F /* Posession.m */,
 				9ABFBB8B149C114100A99BA0 /* RandomPosessions.1 */,
 				9ABFBB89149C114100A99BA0 /* Supporting Files */,
 			);
@@ -140,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9ABFBB88149C114100A99BA0 /* main.m in Sources */,
+				9A6AB335149C1F010043163F /* Posession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +236,7 @@
 				9ABFBB91149C114100A99BA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
