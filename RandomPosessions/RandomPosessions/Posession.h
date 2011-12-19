@@ -16,6 +16,8 @@
     NSDate *dateCreated;
 }
 
++ (id)randomPosession;
+
 - (id)initWithPosessionName:(NSString *)name
              valueInDollars:(int)value
                serialNumber:(NSString *)sNumber;

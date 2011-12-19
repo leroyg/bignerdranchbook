@@ -14,22 +14,15 @@ int main (int argc, const char * argv[])
 
     @autoreleasepool {
         NSMutableArray *items = [[NSMutableArray alloc] init];
-        [items addObject:@"one"];
-        [items addObject:@"two"];
-        [items addObject:@"three"];
-        [items insertObject:@"zero" atIndex:0];
         
-        for(int i = 0; i < [items count]; i++) {
-            NSLog(@"%@", [items objectAtIndex:i]);
-            
+        for(int i = 0; i < 10; i++) {
+            Posession *p = [Posession randomPosession];
+            [items addObject:p];
         }
         
-        Posession *p = [[Posession alloc] init];
-        [p setPosessionName:@"Red Sofa"];
-        [p setSerialNumber:@"1234"];
-        [p setValueInDollars:32];
-        
-        NSLog(@"%@", p);
+        for(int i = 0; i < [items count]; i++) {
+            NSLog(@"%@", [items objectAtIndex:i]);            
+        }        
     }
     return 0;
 }
