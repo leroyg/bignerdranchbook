@@ -15,13 +15,13 @@ int main (int argc, const char * argv[])
     @autoreleasepool {
         NSMutableArray *items = [[NSMutableArray alloc] init];
         
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             Posession *p = [Posession randomPosession];
             [items addObject:p];
         }
         
-        for(int i = 0; i < [items count]; i++) {
-            NSLog(@"%@", [items objectAtIndex:i]);            
+        for (Posession *item in items) {
+            NSLog(@"%@", item);            
         }        
     }
     return 0;

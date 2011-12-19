@@ -9,7 +9,7 @@
 #import "Posession.h"
 
 @implementation Posession
-
+@synthesize posessionName, serialNumber, valueInDollars, dateCreated;
 
 + (id)randomPosession
 {
@@ -54,45 +54,10 @@
                           serialNumber:@"Unknown"];
 }
 
-- (void)setPosessionName:(NSString *)str
-{
-    posessionName = str;
-}
-
-- (NSString *)posessionName
-{
-    return posessionName;
-}
-
-- (void)setSerialNumber:(NSString *)str
-{
-    serialNumber = str;
-}
-
-- (NSString *)serialNumber
-{
-    return serialNumber;
-}
-
-- (void)setValueInDollars:(int)i
-{
-    valueInDollars = i;
-}
-
-- (int)valueInDollars
-{
-    return valueInDollars;
-}
-
-- (NSDate *)dateCreated
-{
-    return dateCreated;
-}
 
 - (NSString *)description
 {
-    NSString *descriptionString = [[NSString alloc] initWithFormat:@"%@ (%@) $%d [%@]", posessionName, serialNumber, valueInDollars, dateCreated];
-    return descriptionString;
+    return [NSString stringWithFormat:@"%@ (%@) $%d [%@]", posessionName, serialNumber, valueInDollars, dateCreated];
 }
 
 @end
