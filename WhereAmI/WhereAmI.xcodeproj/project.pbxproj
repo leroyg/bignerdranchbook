@@ -14,6 +14,7 @@
 		9A6AB357149FD32F0043163F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB356149FD32F0043163F /* main.m */; };
 		9A6AB35B149FD32F0043163F /* WhereAmIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB35A149FD32F0043163F /* WhereAmIAppDelegate.m */; };
 		9A6AB35D149FD32F0043163F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6AB35C149FD32F0043163F /* MainWindow.xib */; };
+		9A6AB364149FD4380043163F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6AB363149FD4380043163F /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,13 +22,14 @@
 		9A6AB34A149FD32F0043163F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A6AB34C149FD32F0043163F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A6AB34E149FD32F0043163F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9A6AB352149FD32F0043163F /* WhereAmI-Info.plist */ = {isa = PBXFileReference; path = "WhereAmI-Info.plist"; sourceTree = "<group>"; };
+		9A6AB352149FD32F0043163F /* WhereAmI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhereAmI-Info.plist"; sourceTree = "<group>"; };
 		9A6AB354149FD32F0043163F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9A6AB356149FD32F0043163F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9A6AB358149FD32F0043163F /* WhereAmI-Prefix.pch */ = {isa = PBXFileReference; path = "WhereAmI-Prefix.pch"; sourceTree = "<group>"; };
-		9A6AB359149FD32F0043163F /* WhereAmIAppDelegate.h */ = {isa = PBXFileReference; path = WhereAmIAppDelegate.h; sourceTree = "<group>"; };
+		9A6AB358149FD32F0043163F /* WhereAmI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhereAmI-Prefix.pch"; sourceTree = "<group>"; };
+		9A6AB359149FD32F0043163F /* WhereAmIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhereAmIAppDelegate.h; sourceTree = "<group>"; };
 		9A6AB35A149FD32F0043163F /* WhereAmIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhereAmIAppDelegate.m; sourceTree = "<group>"; };
 		9A6AB35C149FD32F0043163F /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		9A6AB363149FD4380043163F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6AB364149FD4380043163F /* CoreLocation.framework in Frameworks */,
 				9A6AB34B149FD32F0043163F /* UIKit.framework in Frameworks */,
 				9A6AB34D149FD32F0043163F /* Foundation.framework in Frameworks */,
 				9A6AB34F149FD32F0043163F /* CoreGraphics.framework in Frameworks */,
@@ -64,6 +67,7 @@
 		9A6AB349149FD32F0043163F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A6AB363149FD4380043163F /* CoreLocation.framework */,
 				9A6AB34A149FD32F0043163F /* UIKit.framework */,
 				9A6AB34C149FD32F0043163F /* Foundation.framework */,
 				9A6AB34E149FD32F0043163F /* CoreGraphics.framework */,
