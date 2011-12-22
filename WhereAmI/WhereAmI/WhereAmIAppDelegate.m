@@ -18,14 +18,21 @@
     [locationManager setDelegate:self];
     [locationManager setDistanceFilter:kCLDistanceFilterNone];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [locationManager setHeadingFilter:kCLHeadingFilterNone];
     [locationManager startUpdatingLocation];
+    [locationManager startUpdatingHeading];
     [[self window] makeKeyAndVisible];
     return YES;
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    NSLog(@"HEADING: %@", newHeading);
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation 
 { 
-    NSLog(@"%@", newLocation); 
+    NSLog(@"LOCATION: %@", newLocation); 
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
