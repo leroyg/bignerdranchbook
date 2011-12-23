@@ -10,7 +10,7 @@
 
 @class HypnosisView;
 
-@interface HypnotizerAppDelegate : UIResponder <UIApplicationDelegate>
+@interface HypnotizerAppDelegate : UIResponder <UIApplicationDelegate, UIScrollViewDelegate>
 {
     HypnosisView *view;
 }
