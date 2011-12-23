@@ -10,4 +10,26 @@
 
 @implementation HypnosisViewController
 
+- (id)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        UITabBarItem *tbi = [self tabBarItem];
+        [tbi setTitle:@"Hypnosis"];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    return [self init];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    NSLog(@"Loaded the view for HypnosisViewController");
+    [[self view] setBackgroundColor:[UIColor yellowColor]];
+}
+
 @end
