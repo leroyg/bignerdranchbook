@@ -7,6 +7,8 @@
 //
 
 #import "HypnoTimeAppDelegate.h"
+#import "CurrentTimeViewController.h"
+#import "HypnosisViewController.h"
 
 @implementation HypnoTimeAppDelegate
 
@@ -16,6 +18,11 @@
 {
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [[self window] setRootViewController:tabBarController];
+    
+    UIViewController *vc1 = [[CurrentTimeViewController alloc] init];
+    UIViewController *vc2 = [[HypnosisViewController alloc] init];
+    
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:vc1, vc2, nil]];
     
     [[self window] makeKeyAndVisible];
     return YES;

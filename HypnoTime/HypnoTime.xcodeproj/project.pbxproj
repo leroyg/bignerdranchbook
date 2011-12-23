@@ -17,6 +17,8 @@
 		9A6AB3BF14A421130043163F /* HypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB3BE14A421130043163F /* HypnosisView.m */; };
 		9A6AB3C214A421510043163F /* Hypno.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6AB3C014A421510043163F /* Hypno.png */; };
 		9A6AB3C314A421510043163F /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6AB3C114A421510043163F /* Time.png */; };
+		9A6AB3C614A540390043163F /* CurrentTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB3C514A540390043163F /* CurrentTimeViewController.m */; };
+		9A6AB3C914A5408E0043163F /* HypnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB3C814A5408E0043163F /* HypnosisViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,10 @@
 		9A6AB3BE14A421130043163F /* HypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisView.m; sourceTree = "<group>"; };
 		9A6AB3C014A421510043163F /* Hypno.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hypno.png; sourceTree = "<group>"; };
 		9A6AB3C114A421510043163F /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
+		9A6AB3C414A540390043163F /* CurrentTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentTimeViewController.h; sourceTree = "<group>"; };
+		9A6AB3C514A540390043163F /* CurrentTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentTimeViewController.m; sourceTree = "<group>"; };
+		9A6AB3C714A5408E0043163F /* HypnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisViewController.h; sourceTree = "<group>"; };
+		9A6AB3C814A5408E0043163F /* HypnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +87,14 @@
 		9A6AB3AA14A420E00043163F /* HypnoTime */ = {
 			isa = PBXGroup;
 			children = (
-				9A6AB3B314A420E00043163F /* HypnoTimeAppDelegate.h */,
 				9A6AB3BD14A421130043163F /* HypnosisView.h */,
 				9A6AB3BE14A421130043163F /* HypnosisView.m */,
+				9A6AB3B314A420E00043163F /* HypnoTimeAppDelegate.h */,
 				9A6AB3B414A420E00043163F /* HypnoTimeAppDelegate.m */,
+				9A6AB3C714A5408E0043163F /* HypnosisViewController.h */,
+				9A6AB3C814A5408E0043163F /* HypnosisViewController.m */,
+				9A6AB3C414A540390043163F /* CurrentTimeViewController.h */,
+				9A6AB3C514A540390043163F /* CurrentTimeViewController.m */,
 				9A6AB3C014A421510043163F /* Hypno.png */,
 				9A6AB3C114A421510043163F /* Time.png */,
 				9A6AB3B614A420E00043163F /* MainWindow.xib */,
@@ -172,6 +182,8 @@
 				9A6AB3B114A420E00043163F /* main.m in Sources */,
 				9A6AB3B514A420E00043163F /* HypnoTimeAppDelegate.m in Sources */,
 				9A6AB3BF14A421130043163F /* HypnosisView.m in Sources */,
+				9A6AB3C614A540390043163F /* CurrentTimeViewController.m in Sources */,
+				9A6AB3C914A5408E0043163F /* HypnosisViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
