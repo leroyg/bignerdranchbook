@@ -7,6 +7,7 @@
 //
 
 #import "HypnosisViewController.h"
+#import "HypnosisView.h"
 
 @implementation HypnosisViewController
 
@@ -16,6 +17,8 @@
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Hypnosis"];
+        [tbi setImage:[UIImage imageNamed:@"Hypno.png"]];
+
     }
     return self;
 }
@@ -25,11 +28,17 @@
     return [self init];
 }
 
+- (void)loadView
+{
+    HypnosisView *hv = [[HypnosisView alloc] initWithFrame:CGRectZero];
+    [hv setBackgroundColor:[UIColor whiteColor]];
+    [self setView:hv];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSLog(@"Loaded the view for HypnosisViewController");
-    [[self view] setBackgroundColor:[UIColor yellowColor]];
 }
 
 @end
