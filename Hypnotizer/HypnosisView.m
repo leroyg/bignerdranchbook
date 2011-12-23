@@ -22,9 +22,15 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 10);
-    [[UIColor lightGrayColor] setStroke];
+    
+    NSArray *colors = [NSArray arrayWithObjects:[UIColor yellowColor], [UIColor redColor], [UIColor blueColor], nil];
+    int colorIndex = 0;
+    UIColor *circleColor;
     
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20) {
+        colorIndex = (colorIndex + 1) % [colors count];
+        circleColor = [colors objectAtIndex:colorIndex];
+        [circleColor setStroke];
         CGContextAddArc(context, center.x, center.y, currentRadius, 0.0, M_PI * 2.0, YES);
         CGContextStrokePath(context);
     }
