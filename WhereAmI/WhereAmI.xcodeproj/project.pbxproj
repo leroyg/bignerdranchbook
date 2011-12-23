@@ -15,6 +15,8 @@
 		9A6AB35B149FD32F0043163F /* WhereAmIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB35A149FD32F0043163F /* WhereAmIAppDelegate.m */; };
 		9A6AB35D149FD32F0043163F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6AB35C149FD32F0043163F /* MainWindow.xib */; };
 		9A6AB364149FD4380043163F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6AB363149FD4380043163F /* CoreLocation.framework */; };
+		9A6AB36614A3D7000043163F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6AB36514A3D7000043163F /* MapKit.framework */; };
+		9A6AB36914A3E4F00043163F /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB36814A3E4F00043163F /* MapPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,9 @@
 		9A6AB35A149FD32F0043163F /* WhereAmIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhereAmIAppDelegate.m; sourceTree = "<group>"; };
 		9A6AB35C149FD32F0043163F /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		9A6AB363149FD4380043163F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9A6AB36514A3D7000043163F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9A6AB36714A3E4F00043163F /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
+		9A6AB36814A3E4F00043163F /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6AB36614A3D7000043163F /* MapKit.framework in Frameworks */,
 				9A6AB364149FD4380043163F /* CoreLocation.framework in Frameworks */,
 				9A6AB34B149FD32F0043163F /* UIKit.framework in Frameworks */,
 				9A6AB34D149FD32F0043163F /* Foundation.framework in Frameworks */,
@@ -67,6 +73,7 @@
 		9A6AB349149FD32F0043163F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A6AB36514A3D7000043163F /* MapKit.framework */,
 				9A6AB363149FD4380043163F /* CoreLocation.framework */,
 				9A6AB34A149FD32F0043163F /* UIKit.framework */,
 				9A6AB34C149FD32F0043163F /* Foundation.framework */,
@@ -80,6 +87,8 @@
 			children = (
 				9A6AB359149FD32F0043163F /* WhereAmIAppDelegate.h */,
 				9A6AB35A149FD32F0043163F /* WhereAmIAppDelegate.m */,
+				9A6AB36714A3E4F00043163F /* MapPoint.h */,
+				9A6AB36814A3E4F00043163F /* MapPoint.m */,
 				9A6AB35C149FD32F0043163F /* MainWindow.xib */,
 				9A6AB351149FD32F0043163F /* Supporting Files */,
 			);
@@ -162,6 +171,7 @@
 			files = (
 				9A6AB357149FD32F0043163F /* main.m in Sources */,
 				9A6AB35B149FD32F0043163F /* WhereAmIAppDelegate.m in Sources */,
+				9A6AB36914A3E4F00043163F /* MapPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

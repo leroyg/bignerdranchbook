@@ -7,6 +7,7 @@
 //
 
 #import "WhereAmIAppDelegate.h"
+#import "MapPoint.h"
 
 @implementation WhereAmIAppDelegate
 
@@ -18,26 +19,64 @@
     [locationManager setDelegate:self];
     [locationManager setDistanceFilter:kCLDistanceFilterNone];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [locationManager setHeadingFilter:kCLHeadingFilterNone];
-    [locationManager startUpdatingLocation];
-    [locationManager startUpdatingHeading];
+    [worldView setShowsUserLocation:YES];
     [[self window] makeKeyAndVisible];
     return YES;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    NSLog(@"HEADING: %@", newHeading);
+    CLLocationCoordinate2D location = [userLocation coordinate];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 250, 250);
+    [worldView setRegion:region animated:YES];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation 
-{ 
-    NSLog(@"LOCATION: %@", newLocation); 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self findLocation];
+    [textField resignFirstResponder];
+    return YES;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
-{ 
-    NSLog(@"Could not find location: %@", error); 
+- (void)findLocation
+{
+    [locationManager startUpdatingLocation];
+    [activityIndicator startAnimating];
+    [locationTextField setHidden:YES];
+}
+
+- (void)foundLocation:(CLLocation *)location
+{
+    CLLocationCoordinate2D coord = [location coordinate];
+    
+    [locationManager stopUpdatingLocation];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+    [worldView setRegion:region animated:YES];
+
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];    
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error){
+        NSString *text = [locationTextField text];
+        MapPoint *mp = [[MapPoint alloc] initWithCoordinate:coord title:text];
+        if ([placemarks count] > 0){
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            [mp setTitle:[NSString stringWithFormat:@"%@ %@", text, [placemark name]]];
+        }
+       
+        [worldView addAnnotation:mp];
+        
+        [locationTextField setText:@""];
+        [activityIndicator stopAnimating];
+        [locationTextField setHidden:NO];
+    }];    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSTimeInterval t = [[newLocation timestamp] timeIntervalSinceNow];
+    if (t < -180) {
+        return;
+    }
+    [self foundLocation:newLocation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
