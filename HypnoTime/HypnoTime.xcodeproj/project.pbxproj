@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A43885B14A654BD007E7E8C /* Hypno@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A43885A14A654BD007E7E8C /* Hypno@2x.png */; };
+		9A43885D14A654CB007E7E8C /* Time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A43885C14A654CB007E7E8C /* Time@2x.png */; };
 		9A6AB3A514A420DF0043163F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6AB3A414A420DF0043163F /* UIKit.framework */; };
 		9A6AB3A714A420DF0043163F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6AB3A614A420DF0043163F /* Foundation.framework */; };
 		9A6AB3A914A420DF0043163F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6AB3A814A420DF0043163F /* CoreGraphics.framework */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A43885A14A654BD007E7E8C /* Hypno@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hypno@2x.png"; sourceTree = "<group>"; };
+		9A43885C14A654CB007E7E8C /* Time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Time@2x.png"; sourceTree = "<group>"; };
 		9A6AB3A014A420DF0043163F /* HypnoTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypnoTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6AB3A414A420DF0043163F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A6AB3A614A420DF0043163F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6AB3BD14A421130043163F /* HypnosisView.h */,
+				9A43885A14A654BD007E7E8C /* Hypno@2x.png */,
 				9A6AB3BE14A421130043163F /* HypnosisView.m */,
 				9A6AB3C714A5408E0043163F /* HypnosisViewController.h */,
 				9A6AB3C814A5408E0043163F /* HypnosisViewController.m */,
@@ -135,6 +140,7 @@
 			children = (
 				9A6AB3CC14A549A80043163F /* CurrentTimeViewController.xib */,
 				9A6AB3C414A540390043163F /* CurrentTimeViewController.h */,
+				9A43885C14A654CB007E7E8C /* Time@2x.png */,
 				9A6AB3C514A540390043163F /* CurrentTimeViewController.m */,
 				9A6AB3C114A421510043163F /* Time.png */,
 			);
@@ -206,6 +212,8 @@
 				9A6AB3C214A421510043163F /* Hypno.png in Resources */,
 				9A6AB3C314A421510043163F /* Time.png in Resources */,
 				9A6AB3CD14A549A80043163F /* CurrentTimeViewController.xib in Resources */,
+				9A43885B14A654BD007E7E8C /* Hypno@2x.png in Resources */,
+				9A43885D14A654CB007E7E8C /* Time@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
