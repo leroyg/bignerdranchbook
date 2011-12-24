@@ -43,4 +43,15 @@
     [timeLabel setText:[formatter stringFromDate:now]];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"CurrentTimeViewController will appear");
+    [super viewWillAppear:animated];
+    [self showCurrentTime:nil];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"CurrentTimeViewController will appear");
+    [super viewWillDisappear:animated];
+}
 @end
