@@ -58,6 +58,9 @@
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
-    NSLog(@"%f %f %f", [acceleration x], [acceleration y], [acceleration z]);
+    HypnosisView *hv = (HypnosisView *)[self view];
+    [hv setXShift:10.0 * [acceleration x]];
+    [hv setYShift:-10.0 * [acceleration y]];
+    [hv setNeedsDisplay];
 }
 @end

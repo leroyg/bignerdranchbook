@@ -9,6 +9,7 @@
 #import "HypnosisView.h"
 
 @implementation HypnosisView
+@synthesize xShift, yShift;
 
 - (void)drawRect:(CGRect)rect
 {
@@ -31,6 +32,10 @@
         colorIndex = (colorIndex + 1) % [colors count];
         circleColor = [colors objectAtIndex:colorIndex];
         [circleColor setStroke];
+        
+        center.x += xShift;
+        center.y += yShift;
+        
         CGContextAddArc(context, center.x, center.y, currentRadius, 0.0, M_PI * 2.0, YES);
         CGContextStrokePath(context);
     }
