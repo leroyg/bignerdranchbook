@@ -9,6 +9,7 @@
 #import "HypnoTimeAppDelegate.h"
 #import "CurrentTimeViewController.h"
 #import "HypnosisViewController.h"
+#import "MapKitViewController.h"
 
 @implementation HypnoTimeAppDelegate
 
@@ -21,8 +22,9 @@
     
     UIViewController *vc1 = [[CurrentTimeViewController alloc] init];
     UIViewController *vc2 = [[HypnosisViewController alloc] init];
+    UIViewController *vc3 = [[MapKitViewController alloc] init];
     
-    [tabBarController setViewControllers:[NSArray arrayWithObjects:vc1, vc2, nil]];
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:vc1, vc2, vc3, nil]];
     
     [[self window] makeKeyAndVisible];
     return YES;

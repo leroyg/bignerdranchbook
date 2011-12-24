@@ -20,6 +20,8 @@
 		9A6AB3C614A540390043163F /* CurrentTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB3C514A540390043163F /* CurrentTimeViewController.m */; };
 		9A6AB3C914A5408E0043163F /* HypnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB3C814A5408E0043163F /* HypnosisViewController.m */; };
 		9A6AB3CD14A549A80043163F /* CurrentTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6AB3CC14A549A80043163F /* CurrentTimeViewController.xib */; };
+		9A6AB3D214A55C770043163F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6AB3D114A55C770043163F /* MapKit.framework */; };
+		9A6AB3D514A55D0C0043163F /* MapKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6AB3D414A55D0C0043163F /* MapKitViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,9 @@
 		9A6AB3C714A5408E0043163F /* HypnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisViewController.h; sourceTree = "<group>"; };
 		9A6AB3C814A5408E0043163F /* HypnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisViewController.m; sourceTree = "<group>"; };
 		9A6AB3CC14A549A80043163F /* CurrentTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CurrentTimeViewController.xib; path = ../CurrentTimeViewController.xib; sourceTree = "<group>"; };
+		9A6AB3D114A55C770043163F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9A6AB3D314A55D0B0043163F /* MapKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapKitViewController.h; sourceTree = "<group>"; };
+		9A6AB3D414A55D0C0043163F /* MapKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapKitViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6AB3D214A55C770043163F /* MapKit.framework in Frameworks */,
 				9A6AB3A514A420DF0043163F /* UIKit.framework in Frameworks */,
 				9A6AB3A714A420DF0043163F /* Foundation.framework in Frameworks */,
 				9A6AB3A914A420DF0043163F /* CoreGraphics.framework in Frameworks */,
@@ -79,6 +85,7 @@
 		9A6AB3A314A420DF0043163F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A6AB3D114A55C770043163F /* MapKit.framework */,
 				9A6AB3A414A420DF0043163F /* UIKit.framework */,
 				9A6AB3A614A420DF0043163F /* Foundation.framework */,
 				9A6AB3A814A420DF0043163F /* CoreGraphics.framework */,
@@ -93,6 +100,7 @@
 				9A6AB3CF14A54A300043163F /* Hypnosis */,
 				9A6AB3B314A420E00043163F /* HypnoTimeAppDelegate.h */,
 				9A6AB3B414A420E00043163F /* HypnoTimeAppDelegate.m */,
+				9A6AB3D614A55D120043163F /* Map */,
 				9A6AB3B614A420E00043163F /* MainWindow.xib */,
 				9A6AB3AB14A420E00043163F /* Supporting Files */,
 			);
@@ -131,6 +139,15 @@
 				9A6AB3C114A421510043163F /* Time.png */,
 			);
 			name = "Current Time";
+			sourceTree = "<group>";
+		};
+		9A6AB3D614A55D120043163F /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				9A6AB3D314A55D0B0043163F /* MapKitViewController.h */,
+				9A6AB3D414A55D0C0043163F /* MapKitViewController.m */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +221,7 @@
 				9A6AB3BF14A421130043163F /* HypnosisView.m in Sources */,
 				9A6AB3C614A540390043163F /* CurrentTimeViewController.m in Sources */,
 				9A6AB3C914A5408E0043163F /* HypnosisViewController.m in Sources */,
+				9A6AB3D514A55D0C0043163F /* MapKitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
