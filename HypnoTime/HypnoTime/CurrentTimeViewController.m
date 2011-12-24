@@ -32,4 +32,15 @@
     NSLog(@"Loaded the view for CurrentTimeViewController");
 }
 
+- (IBAction)showCurrentTime:(id)sender
+{
+    NSDate *now = [NSDate date];
+    static NSDateFormatter *formatter = nil;
+    if (!formatter) {
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+    [timeLabel setText:[formatter stringFromDate:now]];
+}
+
 @end
