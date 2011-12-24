@@ -41,4 +41,23 @@
     NSLog(@"Loaded the view for HypnosisViewController");
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"Monitoring accelerometer");
+    UIAccelerometer *a = [UIAccelerometer sharedAccelerometer];
+    [a setUpdateInterval:0.1];
+    [a setDelegate:self];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSLog(@"No longer monitoring accelerometer");
+    [[UIAccelerometer sharedAccelerometer] setDelegate:nil];    
+}
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+    NSLog(@"%f %f %f", [acceleration x], [acceleration y], [acceleration z]);
+}
 @end
