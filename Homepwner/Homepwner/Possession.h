@@ -18,7 +18,7 @@
              valueInDollars:(int)value
                serialNumber:(NSString *)sNumber;
 
-@property (strong, nonatomic) NSString *posessionName;
+@property (strong, nonatomic) NSString *possessionName;
 @property (strong, nonatomic) NSString *serialNumber;
 @property (nonatomic) int valueInDollars;
 @property (strong, readonly, nonatomic) NSDate *dateCreated;
