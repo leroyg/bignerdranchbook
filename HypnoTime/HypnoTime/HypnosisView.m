@@ -11,6 +11,15 @@
 @implementation HypnosisView
 @synthesize xShift, yShift;
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        stripeColor = [UIColor lightGrayColor];
+    }
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     CGRect bounds = [self bounds];
@@ -24,14 +33,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 10);
     
-    NSArray *colors = [NSArray arrayWithObjects:[UIColor yellowColor], [UIColor redColor], [UIColor blueColor], nil];
-    int colorIndex = 0;
-    UIColor *circleColor;
-    
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20) {
-        colorIndex = (colorIndex + 1) % [colors count];
-        circleColor = [colors objectAtIndex:colorIndex];
-        [circleColor setStroke];
+        [stripeColor setStroke];
         
         center.x += xShift;
         center.y += yShift;
@@ -56,4 +59,20 @@
     [text drawInRect:textRect withFont:font];
 }
 
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (UIEventSubtypeMotionShake == motion) {
+        float r,g,b;
+        r = random() % 256 / 256.0;
+        g = random() % 256 / 256.0;
+        b = random() % 256 / 256.0;
+        stripeColor = [UIColor colorWithRed:r green:g blue:b alpha:1];
+        [self setNeedsDisplay]; 
+    }
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
 @end

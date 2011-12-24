@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CurrentTimeViewController : UIViewController
-{
-    IBOutlet UILabel *timeLabel;
-}
+@property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 
 - (IBAction)showCurrentTime:(id)sender;
 

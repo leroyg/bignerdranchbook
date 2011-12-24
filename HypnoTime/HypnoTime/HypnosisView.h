@@ -10,6 +10,7 @@
 
 @interface HypnosisView : UIView
 {
+    UIColor *stripeColor;
     float xShift, yShift;
 }
 

@@ -287,6 +287,8 @@
 		9A6AB3BB14A420E00043163F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HypnoTime/HypnoTime-Prefix.pch";
 				INFOPLIST_FILE = "HypnoTime/HypnoTime-Info.plist";
@@ -298,6 +300,8 @@
 		9A6AB3BC14A420E00043163F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HypnoTime/HypnoTime-Prefix.pch";
 				INFOPLIST_FILE = "HypnoTime/HypnoTime-Info.plist";
@@ -325,6 +329,7 @@
 				9A6AB3BC14A420E00043163F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

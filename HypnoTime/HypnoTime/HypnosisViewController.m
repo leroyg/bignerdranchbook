@@ -48,6 +48,7 @@
     UIAccelerometer *a = [UIAccelerometer sharedAccelerometer];
     [a setUpdateInterval:0.1];
     [a setDelegate:self];
+    [[self view] becomeFirstResponder];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -59,8 +60,11 @@
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
     HypnosisView *hv = (HypnosisView *)[self view];
-    [hv setXShift:10.0 * [acceleration x]];
-    [hv setYShift:-10.0 * [acceleration y]];
+    float xShift = [hv xShift] * 0.8 + [acceleration x] * 2.0; 
+    float yShift = [hv yShift] * 0.8 - [acceleration y] * 2.0;
+     
+    [hv setXShift:xShift];
+    [hv setYShift:yShift];
     [hv setNeedsDisplay];
 }
 @end

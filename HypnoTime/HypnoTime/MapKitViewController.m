@@ -12,7 +12,7 @@
 @implementation MapKitViewController
 - (id)init
 {
-    [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Map"];

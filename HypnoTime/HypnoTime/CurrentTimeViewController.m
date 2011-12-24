@@ -9,10 +9,11 @@
 #import "CurrentTimeViewController.h"
 
 @implementation CurrentTimeViewController
+@synthesize timeLabel;
 
 - (id)init
 {
-    [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Time"];
