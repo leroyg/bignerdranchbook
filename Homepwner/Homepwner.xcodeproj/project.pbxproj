@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A07BE3514A67B1F001BB1C2 /* PossessionStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */; };
 		9A78A40D14A66EC800E8995D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A78A40C14A66EC800E8995D /* UIKit.framework */; };
 		9A78A40F14A66EC800E8995D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A78A40E14A66EC800E8995D /* Foundation.framework */; };
 		9A78A41114A66EC800E8995D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A78A41014A66EC800E8995D /* CoreGraphics.framework */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A07BE3314A67B1F001BB1C2 /* PossessionStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PossessionStore.h; sourceTree = "<group>"; };
+		9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PossessionStore.m; sourceTree = "<group>"; };
 		9A78A40814A66EC800E8995D /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78A40C14A66EC800E8995D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A78A40E14A66EC800E8995D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,6 +91,8 @@
 				9A78A42814A6797800E8995D /* Posession.h */,
 				9A78A42914A6797800E8995D /* Posession.m */,
 				9A78A41314A66EC800E8995D /* Supporting Files */,
+				9A07BE3314A67B1F001BB1C2 /* PossessionStore.h */,
+				9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				9A78A41D14A66EC800E8995D /* HomepwnerAppDelegate.m in Sources */,
 				9A78A42714A670E300E8995D /* ItemsViewController.m in Sources */,
 				9A78A42A14A6797800E8995D /* Posession.m in Sources */,
+				9A07BE3514A67B1F001BB1C2 /* PossessionStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +283,7 @@
 				9A78A42414A66EC800E8995D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
