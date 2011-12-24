@@ -1,6 +1,6 @@
 //
-//  Posession.h
-//  RandomPosessions
+//  Possession.h
+//  RandomPossessions
 //
 //  Created by Tammer Saleh on 12/16/11.
 //  Copyright (c) 2011 Thunderbolt Labs. All rights reserved.
@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Posession : NSObject
+@interface Possession : NSObject
 {
 }
 
-+ (id)randomPosession;
++ (id)randomPossession;
 
-- (id)initWithPosessionName:(NSString *)name
+- (id)initWithPossessionName:(NSString *)name
              valueInDollars:(int)value
                serialNumber:(NSString *)sNumber;
 

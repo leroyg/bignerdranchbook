@@ -7,7 +7,7 @@
 //
 
 #import "PossessionStore.h"
-#import "Posession.h"
+#import "Possession.h"
 
 @implementation PossessionStore
 
@@ -38,8 +38,8 @@ static PossessionStore *defaultStore = nil;
     return allPossessions;
 }
 
-- (Posession *)createPossession {
-    Posession *p = [Posession randomPosession];
+- (Possession *)createPossession {
+    Possession *p = [Possession randomPossession];
     [allPossessions addObject:p];
     return p;
 }

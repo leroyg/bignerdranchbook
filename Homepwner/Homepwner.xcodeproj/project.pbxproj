@@ -35,7 +35,7 @@
 		9A78A41E14A66EC800E8995D /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		9A78A42514A670E300E8995D /* ItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsViewController.h; sourceTree = "<group>"; };
 		9A78A42614A670E300E8995D /* ItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsViewController.m; sourceTree = "<group>"; };
-		9A78A42814A6797800E8995D /* Posession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Posession.h; sourceTree = "<group>"; };
+		9A78A42814A6797800E8995D /* Posession.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Posession.h; sourceTree = "<group>"; };
 		9A78A42914A6797800E8995D /* Posession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Posession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

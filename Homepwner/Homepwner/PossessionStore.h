@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Posession;
+@class Possession;
 
 @interface PossessionStore : NSObject
 {
@@ -16,6 +16,6 @@
 }
 + (PossessionStore *)defaultStore;
 - (NSArray *)allPossessions;
-- (Posession *)createPossession;
+- (Possession *)createPossession;
 
 @end
