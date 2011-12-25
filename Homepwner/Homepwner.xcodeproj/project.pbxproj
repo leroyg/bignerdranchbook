@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A07BE3514A67B1F001BB1C2 /* PossessionStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */; };
 		9A540DB114A6902200E2EE64 /* Possession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A540DB014A6902200E2EE64 /* Possession.m */; };
+		9A540DB314A69F3600E2EE64 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A540DB214A69F3600E2EE64 /* HeaderView.xib */; };
 		9A78A40D14A66EC800E8995D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A78A40C14A66EC800E8995D /* UIKit.framework */; };
 		9A78A40F14A66EC800E8995D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A78A40E14A66EC800E8995D /* Foundation.framework */; };
 		9A78A41114A66EC800E8995D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A78A41014A66EC800E8995D /* CoreGraphics.framework */; };
@@ -24,6 +25,7 @@
 		9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PossessionStore.m; sourceTree = "<group>"; };
 		9A540DAF14A6902200E2EE64 /* Possession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Possession.h; sourceTree = "<group>"; };
 		9A540DB014A6902200E2EE64 /* Possession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Possession.m; sourceTree = "<group>"; };
+		9A540DB214A69F3600E2EE64 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		9A78A40814A66EC800E8995D /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78A40C14A66EC800E8995D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A78A40E14A66EC800E8995D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,16 +85,17 @@
 		9A78A41214A66EC800E8995D /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
+				9A540DB214A69F3600E2EE64 /* HeaderView.xib */,
 				9A78A41B14A66EC800E8995D /* HomepwnerAppDelegate.h */,
 				9A78A41C14A66EC800E8995D /* HomepwnerAppDelegate.m */,
 				9A78A42514A670E300E8995D /* ItemsViewController.h */,
 				9A78A42614A670E300E8995D /* ItemsViewController.m */,
+				9A78A41E14A66EC800E8995D /* MainWindow.xib */,
 				9A540DAF14A6902200E2EE64 /* Possession.h */,
 				9A540DB014A6902200E2EE64 /* Possession.m */,
-				9A78A41E14A66EC800E8995D /* MainWindow.xib */,
-				9A78A41314A66EC800E8995D /* Supporting Files */,
 				9A07BE3314A67B1F001BB1C2 /* PossessionStore.h */,
 				9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */,
+				9A78A41314A66EC800E8995D /* Supporting Files */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				9A78A41714A66EC800E8995D /* InfoPlist.strings in Resources */,
 				9A78A41F14A66EC800E8995D /* MainWindow.xib in Resources */,
+				9A540DB314A69F3600E2EE64 /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

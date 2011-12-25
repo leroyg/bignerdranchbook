@@ -44,8 +44,14 @@ static PossessionStore *defaultStore = nil;
     return p;
 }
 
-// NOT overriding retain/release/retainCount as per Page 179.  ARC will bitch.
+- (void)removePossession:(Possession *)p {
+    [allPossessions removeObjectIdenticalTo:p];
+}
 
-
-
+- (void)movePossessionAtIndex:(int)from toIndex:(int)to {
+    if (from == to) { return; }
+    Possession *p = [allPossessions objectAtIndex:from];
+    [allPossessions removeObjectAtIndex:from];
+    [allPossessions insertObject:p atIndex:to];
+}
 @end
