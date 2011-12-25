@@ -13,7 +13,13 @@
 @implementation ItemsViewController
 
 - (id)init {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewPossession:)];
+        [[self navigationItem] setRightBarButtonItem:bbi];
+        [[self navigationItem] setTitle:@"Possessions"];
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+    }
+    
     return self;
 }
 
@@ -33,31 +39,6 @@
     Possession *p =[[[PossessionStore defaultStore] allPossessions] objectAtIndex:[indexPath row]];
     [[cell textLabel] setText:[p description]];
     return cell;
-}
-
-- (UIView *)headerView {
-    if (!headerView) {
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil];
-    }
-    return headerView;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [self headerView];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [[self headerView] bounds].size.height;
-}
-
-- (void)toggleEditingMode:(id)sender {
-    if ([self isEditing]) {
-        [sender setTitle:@"Edit" forState:UIControlStateNormal];
-        [self setEditing:NO animated:YES];
-    } else {
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-        [self setEditing:YES animated:YES];
-    }
 }
 
 - (IBAction)addNewPossession:(id)sender {
