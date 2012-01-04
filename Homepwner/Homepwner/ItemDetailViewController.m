@@ -14,6 +14,7 @@
 @synthesize serialNumberField;
 @synthesize valueField;
 @synthesize dateLabel;
+@synthesize imageView;
 @synthesize possession;
 
 - (void)viewDidLoad {
@@ -26,6 +27,7 @@
     [self setSerialNumberField:nil];
     [self setValueField:nil];
     [self setDateLabel:nil];
+    [self setImageView:nil];
     [super viewDidUnload];
 }
 
@@ -47,5 +49,21 @@
     [[self possession] setPossessionName:[nameField text]];
     [[self possession] setSerialNumber:[serialNumberField text]];
     [[self possession] setValueInDollars:[[valueField text] intValue]];
+}
+- (IBAction)takePicture:(id)sender {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    } else {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+    [imagePicker setDelegate:self];
+    [self presentModalViewController:imagePicker animated:YES];
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [imageView setImage:image];
+    [self dismissModalViewControllerAnimated:YES];
 }
 @end
