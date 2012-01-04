@@ -13,8 +13,8 @@
 
 + (id)randomPossession
 {
-    NSArray *randomAdjectiveList = [NSArray arrayWithObjects:@"Fluffy", @"Rusty", @"Shitty", nil];
-    NSArray *randomNounList = [NSArray arrayWithObjects:@"boobie", @"penis", @"asshole", nil];
+    NSArray *randomAdjectiveList = [NSArray arrayWithObjects:@"Red", @"Blue", @"Purple", nil];
+    NSArray *randomNounList = [NSArray arrayWithObjects:@"car", @"truck", @"boat", nil];
     int adjectiveIndex = rand() % [randomAdjectiveList count];
     int nounIndex = rand() % [randomNounList count];
     NSString *randomName = [NSString stringWithFormat:@"%@ %@",

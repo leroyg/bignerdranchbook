@@ -27,6 +27,15 @@
     return [self init];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ItemDetailViewController *detailViewController = [[ItemDetailViewController alloc] init];
+    
+    NSArray *possessions = [[PossessionStore defaultStore] allPossessions];
+    [detailViewController setPossession:[possessions objectAtIndex:[indexPath row]]];
+    
+    [[self navigationController] pushViewController:detailViewController animated:YES];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[[PossessionStore defaultStore] allPossessions] count];
 }
@@ -58,6 +67,11 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     [[PossessionStore defaultStore] movePossessionAtIndex:[sourceIndexPath row] toIndex:[destinationIndexPath row]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self tableView] reloadData];
 }
 
 @end
