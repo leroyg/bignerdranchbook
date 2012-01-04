@@ -32,6 +32,7 @@ static ImageStore *defaultImageStore = nil;
     if (self) {
         dictionary = [[NSMutableDictionary alloc] init];
     }
+    return self;
 }
 
 - (void)setImage:(UIImage *)i forKey:(NSString *)s {
