@@ -9,7 +9,7 @@
 #import "Possession.h"
 
 @implementation Possession
-@synthesize possessionName, serialNumber, valueInDollars, dateCreated;
+@synthesize possessionName, serialNumber, valueInDollars, dateCreated, imageKey;
 
 + (id)randomPossession
 {

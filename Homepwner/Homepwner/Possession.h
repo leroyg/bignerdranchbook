@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface Possession : NSObject
-{
-}
 
 + (id)randomPossession;
 
@@ -22,5 +20,6 @@
 @property (strong, nonatomic) NSString *serialNumber;
 @property (nonatomic) int valueInDollars;
 @property (strong, readonly, nonatomic) NSDate *dateCreated;
+@property (strong, nonatomic) NSString *imageKey;
 
 @end

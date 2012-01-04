@@ -8,6 +8,7 @@
 
 #import "ItemDetailViewController.h"
 #import "Possession.h"
+#import "ImageStore.h"
 
 @implementation ItemDetailViewController
 @synthesize nameField;
@@ -41,6 +42,13 @@
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     [dateLabel setText:[formatter stringFromDate:[[self possession] dateCreated]]];
     [[self navigationItem] setTitle:[[self possession] possessionName]];
+    NSString *imageKey = [possession imageKey];
+    if (imageKey) {
+        UIImage *imageToDisplay = [[ImageStore defaultImageStore] imageForKey:imageKey];
+        [imageView setImage:imageToDisplay];
+    } else {
+        [imageView setImage:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -62,7 +70,20 @@
     
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NSString *oldKey = [possession imageKey];
+    if (oldKey) {
+        [[ImageStore defaultImageStore] deleteImageForKey:oldKey];
+    }
+    
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
+    CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+    [possession setImageKey:(__bridge NSString *)newUniqueIDString];
+    CFRelease(newUniqueID);
+    CFRelease(newUniqueIDString);
+    [[ImageStore defaultImageStore] setImage:image forKey:[possession imageKey]];
+    
     [imageView setImage:image];
     [self dismissModalViewControllerAnimated:YES];
 }
