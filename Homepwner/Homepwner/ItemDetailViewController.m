@@ -20,7 +20,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[self view] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    UIColor *clr = nil;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        clr = [UIColor colorWithRed:0.875 green:0.88 blue:0.91 alpha:1];
+    } else {
+        clr = [UIColor groupTableViewBackgroundColor];
+    }
+    
+    [[self view] setBackgroundColor:clr];
 }
 
 - (void)viewDidUnload {
@@ -69,6 +76,19 @@
     [self presentModalViewController:imagePicker animated:YES];
     
 }
+
+- (IBAction)backgroundTapped:(id)sender {
+    [[self view] endEditing:YES];
+}
+
+- (IBAction)removePicture:(id)sender {
+    if ([[self possession] imageKey]) {
+        [[ImageStore defaultImageStore] deleteImageForKey:[[self possession] imageKey]];
+        [[self possession] setImageKey:nil];
+    }
+    [imageView setImage:nil];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *oldKey = [possession imageKey];
     if (oldKey) {
@@ -87,4 +107,19 @@
     [imageView setImage:image];
     [self dismissModalViewControllerAnimated:YES];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        return YES;
+    } else {
+        return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+    }
+    
+}
+
 @end

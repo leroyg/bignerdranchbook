@@ -10,7 +10,7 @@
 
 @class Possession;
 
-@interface ItemDetailViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ItemDetailViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) Possession *possession;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -19,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)takePicture:(id)sender;
+- (IBAction)backgroundTapped:(id)sender;
+- (IBAction)removePicture:(id)sender;
 
 @end
