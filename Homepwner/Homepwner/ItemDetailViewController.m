@@ -112,7 +112,13 @@
     [[ImageStore defaultImageStore] setImage:image forKey:[possession imageKey]];
     
     [imageView setImage:image];
-    [self dismissModalViewControllerAnimated:YES];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [self dismissModalViewControllerAnimated:YES];        
+    } else {
+        [[self imagePickerPopover] dismissPopoverAnimated:YES];
+        [self setImagePickerPopover:nil];
+    }
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -127,6 +133,10 @@
         return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
     }
     
+}
+
+-(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    [self setImagePickerPopover:nil];
 }
 
 @end
