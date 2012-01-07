@@ -8,6 +8,7 @@
 
 #import "ItemDetailViewController.h"
 #import "Possession.h"
+#import "PossessionStore.h"
 #import "ImageStore.h"
 
 @implementation ItemDetailViewController
@@ -18,6 +19,25 @@
 @synthesize imageView;
 @synthesize possession;
 @synthesize imagePickerPopover;
+@synthesize delegate;
+
+- (id)initForNewItem:(BOOL)isNew {
+    self = [super initWithNibName:@"ItemDetailViewController" bundle:nil];
+    if (self) {
+        if (isNew) {
+            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save:)];
+            [[self navigationItem] setRightBarButtonItem:doneItem];
+            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+            [[self navigationItem] setLeftBarButtonItem:cancelItem];
+        }
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    @throw [NSException exceptionWithName:@"wrong init" reason:@"use initForNewItem" userInfo:nil];
+    return nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,6 +86,22 @@
     [[self possession] setSerialNumber:[serialNumberField text]];
     [[self possession] setValueInDollars:[[valueField text] intValue]];
 }
+
+- (IBAction)save:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+    if ([delegate respondsToSelector:@selector(itemDetailViewControllerWillDismiss:)]) {
+        [delegate itemDetailViewControllerWillDismiss:self];
+    }
+}
+
+- (IBAction)cancel:(id)sender {
+    [[PossessionStore defaultStore] removePossession:[self possession]];
+    [self dismissModalViewControllerAnimated:YES];
+    if ([delegate respondsToSelector:@selector(itemDetailViewControllerWillDismiss:)]) {
+        [delegate itemDetailViewControllerWillDismiss:self];
+    }
+}
+
 - (IBAction)takePicture:(id)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

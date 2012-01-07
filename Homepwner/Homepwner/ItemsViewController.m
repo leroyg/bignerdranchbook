@@ -28,7 +28,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ItemDetailViewController *detailViewController = [[ItemDetailViewController alloc] init];
+    ItemDetailViewController *detailViewController = [[ItemDetailViewController alloc] initForNewItem:NO];
     
     NSArray *possessions = [[PossessionStore defaultStore] allPossessions];
     [detailViewController setPossession:[possessions objectAtIndex:[indexPath row]]];
@@ -51,8 +51,13 @@
 }
 
 - (IBAction)addNewPossession:(id)sender {
-    [[PossessionStore defaultStore] createPossession];
-    [[self tableView] reloadData];
+    Possession *possession = [[PossessionStore defaultStore] createPossession];
+    ItemDetailViewController *detailViewController = [[ItemDetailViewController alloc] initForNewItem:YES];
+    [detailViewController setPossession:possession];
+    [detailViewController setDelegate:self];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    [navController setModalPresentationStyle:UIModalPresentationFormSheet];
+    [self presentModalViewController:navController animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -79,8 +84,10 @@
         return YES;
     } else {
         return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
-    }
-    
+    }    
 }
 
+- (void)itemDetailViewControllerWillDismiss:(ItemDetailViewController *)vc {
+    [[self tableView] reloadData];
+}
 @end

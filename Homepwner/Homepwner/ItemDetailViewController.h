@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class Possession;
+@class ItemDetailViewController;
+
+@protocol ItemDetailViewControllerDelegate <NSObject>
+
+@optional
+- (void)itemDetailViewControllerWillDismiss:(ItemDetailViewController *)vc;
+
+@end
 
 @interface ItemDetailViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
@@ -20,6 +28,9 @@
 
 @property (strong, nonatomic) Possession *possession;
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
+@property (weak, nonatomic) id <ItemDetailViewControllerDelegate> delegate;
+
+- (id)initForNewItem:(BOOL)isNew;
 
 - (IBAction)takePicture:(id)sender;
 - (IBAction)backgroundTapped:(id)sender;
