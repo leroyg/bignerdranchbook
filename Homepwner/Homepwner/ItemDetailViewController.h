@@ -10,14 +10,17 @@
 
 @class Possession;
 
-@interface ItemDetailViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface ItemDetailViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
+
+@property (strong, nonatomic) IBOutlet UITextField *nameField;
+@property (strong, nonatomic) IBOutlet UITextField *serialNumberField;
+@property (strong, nonatomic) IBOutlet UITextField *valueField;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (strong, nonatomic) Possession *possession;
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
-@property (weak, nonatomic) IBOutlet UITextField *valueField;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIPopoverController *imagePickerPopover;
+
 - (IBAction)takePicture:(id)sender;
 - (IBAction)backgroundTapped:(id)sender;
 - (IBAction)removePicture:(id)sender;

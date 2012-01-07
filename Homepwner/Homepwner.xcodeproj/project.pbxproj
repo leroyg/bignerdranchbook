@@ -63,6 +63,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A28CD9B14B4FE7A006CC6F9 /* ItemsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A78A42514A670E300E8995D /* ItemsViewController.h */,
+				9A78A42614A670E300E8995D /* ItemsViewController.m */,
+			);
+			name = ItemsViewController;
+			sourceTree = "<group>";
+		};
+		9A28CD9C14B4FEA3006CC6F9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9A78A41B14A66EC800E8995D /* HomepwnerAppDelegate.h */,
+				9A78A41C14A66EC800E8995D /* HomepwnerAppDelegate.m */,
+				9A78A41E14A66EC800E8995D /* MainWindow.xib */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		9A540DB914A6C93400E2EE64 /* Possession */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,12 +135,9 @@
 			children = (
 				9A98BD7114B41D7A006D8A03 /* ImageStore */,
 				9A540DB214A69F3600E2EE64 /* HeaderView.xib */,
-				9A78A41B14A66EC800E8995D /* HomepwnerAppDelegate.h */,
-				9A78A41C14A66EC800E8995D /* HomepwnerAppDelegate.m */,
+				9A28CD9C14B4FEA3006CC6F9 /* Main */,
 				9A540DBA14A6C97C00E2EE64 /* ItemDetailViewController */,
-				9A78A42514A670E300E8995D /* ItemsViewController.h */,
-				9A78A42614A670E300E8995D /* ItemsViewController.m */,
-				9A78A41E14A66EC800E8995D /* MainWindow.xib */,
+				9A28CD9B14B4FE7A006CC6F9 /* ItemsViewController */,
 				9A540DB914A6C93400E2EE64 /* Possession */,
 				9A78A41314A66EC800E8995D /* Supporting Files */,
 			);

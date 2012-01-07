@@ -17,6 +17,7 @@
 @synthesize dateLabel;
 @synthesize imageView;
 @synthesize possession;
+@synthesize imagePickerPopover;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,8 +74,14 @@
         [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     }
     [imagePicker setDelegate:self];
-    [self presentModalViewController:imagePicker animated:YES];
-    
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self setImagePickerPopover:[[UIPopoverController alloc] initWithContentViewController:imagePicker]];
+        [[self imagePickerPopover] setDelegate:self];
+        [[self imagePickerPopover] presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        [self presentModalViewController:imagePicker animated:YES];        
+    }
 }
 
 - (IBAction)backgroundTapped:(id)sender {

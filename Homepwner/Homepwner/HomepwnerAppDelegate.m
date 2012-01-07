@@ -18,7 +18,6 @@
     ItemsViewController *itemsViewController = [[ItemsViewController alloc] init];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
-                                            
     
     [[self window] setRootViewController:navController];
     [[self window] makeKeyAndVisible];
