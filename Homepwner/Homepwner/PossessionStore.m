@@ -54,4 +54,23 @@ static PossessionStore *defaultStore = nil;
     [allPossessions removeObjectAtIndex:from];
     [allPossessions insertObject:p atIndex:to];
 }
+
+- (NSString *)possessionArchivePath {
+    return pathInDocumentDirectory(@"possessions.data");
+}
+
+- (BOOL)saveChanges {
+    return [NSKeyedArchiver archiveRootObject:allPossessions toFile:[self possessionArchivePath]];
+}
+
+- (void)fetchPossessionsIfNecessary {
+    if (!allPossessions) {
+        NSString *path = [self possessionArchivePath];
+        allPossessions = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    }
+    
+    if (!allPossessions) {
+        allPossessions = [[NSMutableArray alloc] init];
+    }
+}
 @end

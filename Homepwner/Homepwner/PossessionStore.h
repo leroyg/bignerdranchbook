@@ -19,4 +19,7 @@
 - (Possession *)createPossession;
 - (void)removePossession:(Possession *)p;
 - (void)movePossessionAtIndex:(int)from toIndex:(int)to;
+- (NSString *)possessionArchivePath;
+- (BOOL)saveChanges;
+- (void)fetchPossessionsIfNecessary;
 @end

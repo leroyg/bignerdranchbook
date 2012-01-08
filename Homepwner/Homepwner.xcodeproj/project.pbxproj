@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A07BE3514A67B1F001BB1C2 /* PossessionStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */; };
+		9A120CCD14B90E6D00BE1F18 /* FileHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A120CCC14B90E6D00BE1F18 /* FileHelpers.m */; };
 		9A540DB114A6902200E2EE64 /* Possession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A540DB014A6902200E2EE64 /* Possession.m */; };
 		9A540DB314A69F3600E2EE64 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A540DB214A69F3600E2EE64 /* HeaderView.xib */; };
 		9A540DB714A6C91700E2EE64 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A540DB514A6C91700E2EE64 /* ItemDetailViewController.m */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		9A07BE3314A67B1F001BB1C2 /* PossessionStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PossessionStore.h; sourceTree = "<group>"; };
 		9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PossessionStore.m; sourceTree = "<group>"; };
+		9A120CCB14B90E6D00BE1F18 /* FileHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHelpers.h; sourceTree = "<group>"; };
+		9A120CCC14B90E6D00BE1F18 /* FileHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHelpers.m; sourceTree = "<group>"; };
 		9A540DAF14A6902200E2EE64 /* Possession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Possession.h; sourceTree = "<group>"; };
 		9A540DB014A6902200E2EE64 /* Possession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Possession.m; sourceTree = "<group>"; };
 		9A540DB214A69F3600E2EE64 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 		9A78A41214A66EC800E8995D /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
+				9A120CCB14B90E6D00BE1F18 /* FileHelpers.h */,
+				9A120CCC14B90E6D00BE1F18 /* FileHelpers.m */,
 				9A98BD7114B41D7A006D8A03 /* ImageStore */,
 				9A540DB214A69F3600E2EE64 /* HeaderView.xib */,
 				9A28CD9C14B4FEA3006CC6F9 /* Main */,
@@ -236,6 +241,7 @@
 				9A540DB114A6902200E2EE64 /* Possession.m in Sources */,
 				9A540DB714A6C91700E2EE64 /* ItemDetailViewController.m in Sources */,
 				9A98BD6F14B41D57006D8A03 /* ImageStore.m in Sources */,
+				9A120CCD14B90E6D00BE1F18 /* FileHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

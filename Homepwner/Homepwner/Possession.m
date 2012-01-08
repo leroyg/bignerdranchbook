@@ -11,8 +11,7 @@
 @implementation Possession
 @synthesize possessionName, serialNumber, valueInDollars, dateCreated, imageKey;
 
-+ (id)randomPossession
-{
++ (id)randomPossession {
     NSArray *randomAdjectiveList = [NSArray arrayWithObjects:@"Red", @"Blue", @"Purple", nil];
     NSArray *randomNounList = [NSArray arrayWithObjects:@"car", @"truck", @"boat", nil];
     int adjectiveIndex = rand() % [randomAdjectiveList count];
@@ -35,8 +34,16 @@
                                     
 }
 
-- (id)initWithPossessionName:(NSString *)name valueInDollars:(int)value serialNumber:(NSString *)sNumber
-{
+- (id)initWithCoder:(NSCoder *)decoder {
+    [self setPossessionName:[decoder decodeObjectForKey:@"possessionName"]];
+    [self setSerialNumber:[decoder decodeObjectForKey:@"serialNumber"]];
+    [self setImageKey:[decoder decodeObjectForKey:@"imageKey"]];
+    [self setValueInDollars:[decoder decodeObjectForKey:@"valueInDollars"]];
+    dateCreated = [decoder decodeObjectForKey:@"dateCreated"];
+}
+     
+
+- (id)initWithPossessionName:(NSString *)name valueInDollars:(int)value serialNumber:(NSString *)sNumber {
     self = [super init];
     if (self) {
         [self setPossessionName:name];
@@ -47,17 +54,21 @@
     return self;        
 }
 
-- (id)init
-{
+- (id)init {
     return [self initWithPossessionName:@"Unknown" 
                          valueInDollars:0 
                            serialNumber:@"Unknown"];
 }
 
-
-- (NSString *)description
-{
+- (NSString *)description {
     return [NSString stringWithFormat:@"%@ (%@) $%d [%@]", possessionName, serialNumber, valueInDollars, dateCreated];
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:possessionName forKey:@"possessionName"];
+    [aCoder encodeObject:serialNumber forKey:@"serialNumber"];
+    [aCoder encodeObject:dateCreated forKey:@"dateCreated"];
+    [aCoder encodeObject:imageKey forKey:@"imageKey"];
+    [aCoder encodeInt:valueInDollars forKey:@"valueInDollars"];
+}
 @end

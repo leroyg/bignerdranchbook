@@ -54,6 +54,7 @@
     Possession *possession = [[PossessionStore defaultStore] createPossession];
     ItemDetailViewController *detailViewController = [[ItemDetailViewController alloc] initForNewItem:YES];
     [detailViewController setPossession:possession];
+    [detailViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [detailViewController setDelegate:self];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
     [navController setModalPresentationStyle:UIModalPresentationFormSheet];
