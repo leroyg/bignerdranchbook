@@ -21,6 +21,7 @@
 		9A78A41D14A66EC800E8995D /* HomepwnerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78A41C14A66EC800E8995D /* HomepwnerAppDelegate.m */; };
 		9A78A41F14A66EC800E8995D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A78A41E14A66EC800E8995D /* MainWindow.xib */; };
 		9A78A42714A670E300E8995D /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78A42614A670E300E8995D /* ItemsViewController.m */; };
+		9A8BE59414BBA42A00AE0790 /* HomeOwnerItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE59314BBA42A00AE0790 /* HomeOwnerItemCell.m */; };
 		9A98BD6F14B41D57006D8A03 /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A98BD6E14B41D57006D8A03 /* ImageStore.m */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,8 @@
 		9A78A41E14A66EC800E8995D /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		9A78A42514A670E300E8995D /* ItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsViewController.h; sourceTree = "<group>"; };
 		9A78A42614A670E300E8995D /* ItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsViewController.m; sourceTree = "<group>"; };
+		9A8BE59214BBA42A00AE0790 /* HomeOwnerItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeOwnerItemCell.h; sourceTree = "<group>"; };
+		9A8BE59314BBA42A00AE0790 /* HomeOwnerItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeOwnerItemCell.m; sourceTree = "<group>"; };
 		9A98BD6D14B41D57006D8A03 /* ImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStore.h; sourceTree = "<group>"; };
 		9A98BD6E14B41D57006D8A03 /* ImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +72,8 @@
 		9A28CD9B14B4FE7A006CC6F9 /* ItemsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9A8BE59214BBA42A00AE0790 /* HomeOwnerItemCell.h */,
+				9A8BE59314BBA42A00AE0790 /* HomeOwnerItemCell.m */,
 				9A78A42514A670E300E8995D /* ItemsViewController.h */,
 				9A78A42614A670E300E8995D /* ItemsViewController.m */,
 			);
@@ -242,6 +247,7 @@
 				9A540DB714A6C91700E2EE64 /* ItemDetailViewController.m in Sources */,
 				9A98BD6F14B41D57006D8A03 /* ImageStore.m in Sources */,
 				9A120CCD14B90E6D00BE1F18 /* FileHelpers.m in Sources */,
+				9A8BE59414BBA42A00AE0790 /* HomeOwnerItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
