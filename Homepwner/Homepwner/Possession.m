@@ -35,11 +35,15 @@
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-    [self setPossessionName:[decoder decodeObjectForKey:@"possessionName"]];
-    [self setSerialNumber:[decoder decodeObjectForKey:@"serialNumber"]];
-    [self setImageKey:[decoder decodeObjectForKey:@"imageKey"]];
-    [self setValueInDollars:[decoder decodeObjectForKey:@"valueInDollars"]];
-    dateCreated = [decoder decodeObjectForKey:@"dateCreated"];
+    self = [super init];
+    if (self) {
+        [self setPossessionName:[decoder decodeObjectForKey:@"possessionName"]];
+        [self setSerialNumber:[decoder decodeObjectForKey:@"serialNumber"]];
+        [self setImageKey:[decoder decodeObjectForKey:@"imageKey"]];
+        [self setValueInDollars:[decoder decodeIntForKey:@"valueInDollars"]];
+        dateCreated = [decoder decodeObjectForKey:@"dateCreated"];
+    }
+    return self;
 }
      
 

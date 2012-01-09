@@ -8,6 +8,7 @@
 
 #import "PossessionStore.h"
 #import "Possession.h"
+#import "ImageStore.h"
 
 @implementation PossessionStore
 
@@ -28,23 +29,25 @@ static PossessionStore *defaultStore = nil;
     if (defaultStore) {
         return defaultStore;
     }
-    if (self = [super init]) {
-        allPossessions = [[NSMutableArray alloc] init];
-    }
+    self = [super init];
     return self;
 }
 
 - (NSArray *)allPossessions {
+    [self fetchPossessionsIfNecessary];
     return allPossessions;
 }
 
 - (Possession *)createPossession {
+    [self fetchPossessionsIfNecessary];
     Possession *p = [Possession randomPossession];
     [allPossessions addObject:p];
     return p;
 }
 
 - (void)removePossession:(Possession *)p {
+    NSString *key = [p imageKey];
+    [[ImageStore defaultImageStore] deleteImageForKey:key];
     [allPossessions removeObjectIdenticalTo:p];
 }
 
