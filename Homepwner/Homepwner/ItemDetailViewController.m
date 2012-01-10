@@ -148,6 +148,8 @@
     [[ImageStore defaultImageStore] setImage:image forKey:[possession imageKey]];
     
     [imageView setImage:image];
+    [possession setThumbnailDataFromImage:image];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [self dismissModalViewControllerAnimated:YES];        
     } else {

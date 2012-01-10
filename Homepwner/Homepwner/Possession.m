@@ -46,6 +46,7 @@
         [self setSerialNumber:[decoder decodeObjectForKey:@"serialNumber"]];
         [self setImageKey:[decoder decodeObjectForKey:@"imageKey"]];
         [self setValueInDollars:[decoder decodeIntForKey:@"valueInDollars"]];
+        [self setThumbnailData:[decoder decodeObjectForKey:@"thumbnailData"]];
         dateCreated = [decoder decodeObjectForKey:@"dateCreated"];
     }
     return self;
@@ -90,6 +91,7 @@
     [aCoder encodeObject:dateCreated forKey:@"dateCreated"];
     [aCoder encodeObject:imageKey forKey:@"imageKey"];
     [aCoder encodeInt:valueInDollars forKey:@"valueInDollars"];
+    [aCoder encodeObject:thumbnailData forKey:@"thumbnailData"];
 }
 
 - (void)setThumbnailDataFromImage:(UIImage *)image {

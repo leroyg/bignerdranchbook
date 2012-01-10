@@ -42,7 +42,10 @@
     
     float valueWidth = 40.0;
     
-    CGRect imageFrame = CGRectMake(inset, inset, 40, 40);
+    CGSize thumbnailSize = [Possession thumbnailSize];
+    float imageSpace = h - thumbnailSize.height;
+        
+    CGRect imageFrame = CGRectMake(inset, imageSpace / 2.0, thumbnailSize.width, thumbnailSize.height);
     [[self imageView] setFrame:imageFrame];
     
     CGRect nameFrame = CGRectMake(imageFrame.size.width + imageFrame.origin.x + inset, 
@@ -61,5 +64,6 @@
 - (void)setPossession:(Possession *)possession {
     [[self valueLabel] setText:[NSString stringWithFormat:@"$%d", [possession valueInDollars]]];
     [[self nameLabel] setText:[possession possessionName]];
+    [[self imageView] setImage:[possession thumbnail]];
 }
 @end
