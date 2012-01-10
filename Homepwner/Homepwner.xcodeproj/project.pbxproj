@@ -72,8 +72,8 @@
 		9A28CD9B14B4FE7A006CC6F9 /* ItemsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9A8BE59214BBA42A00AE0790 /* HomeOwnerItemCell.h */,
-				9A8BE59314BBA42A00AE0790 /* HomeOwnerItemCell.m */,
+				9A540DBA14A6C97C00E2EE64 /* ItemDetailViewController */,
+				9A8BE59614BBB7A900AE0790 /* HomeOwnerItemCell */,
 				9A78A42514A670E300E8995D /* ItemsViewController.h */,
 				9A78A42614A670E300E8995D /* ItemsViewController.m */,
 			);
@@ -146,7 +146,6 @@
 				9A98BD7114B41D7A006D8A03 /* ImageStore */,
 				9A540DB214A69F3600E2EE64 /* HeaderView.xib */,
 				9A28CD9C14B4FEA3006CC6F9 /* Main */,
-				9A540DBA14A6C97C00E2EE64 /* ItemDetailViewController */,
 				9A28CD9B14B4FE7A006CC6F9 /* ItemsViewController */,
 				9A540DB914A6C93400E2EE64 /* Possession */,
 				9A78A41314A66EC800E8995D /* Supporting Files */,
@@ -163,6 +162,15 @@
 				9A78A41A14A66EC800E8995D /* Homepwner-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A8BE59614BBB7A900AE0790 /* HomeOwnerItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				9A8BE59214BBA42A00AE0790 /* HomeOwnerItemCell.h */,
+				9A8BE59314BBA42A00AE0790 /* HomeOwnerItemCell.m */,
+			);
+			name = HomeOwnerItemCell;
 			sourceTree = "<group>";
 		};
 		9A98BD7114B41D7A006D8A03 /* ImageStore */ = {

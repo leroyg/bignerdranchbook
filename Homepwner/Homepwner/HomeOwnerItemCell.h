@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class Possession;
+
 @interface HomeOwnerItemCell : UITableViewCell
+
+@property(nonatomic, strong) UILabel *valueLabel;
+@property(nonatomic, strong) UILabel *nameLabel;
+@property(nonatomic, strong) UIImageView *imageView;
+
+- (void)setPossession:(Possession *)possession;
 
 @end

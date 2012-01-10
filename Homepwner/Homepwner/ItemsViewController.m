@@ -9,6 +9,7 @@
 #import "ItemsViewController.h"
 #import "Possession.h"
 #import "PossessionStore.h"
+#import "HomeOwnerItemCell.h"
 
 @implementation ItemsViewController
 
@@ -41,12 +42,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    HomeOwnerItemCell *cell = (HomeOwnerItemCell *)[tableView dequeueReusableCellWithIdentifier:@"HomeOwnerItemCell"];
+    
     if (!cell) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+      cell = [[HomeOwnerItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HomeOwnerItemCell"];
     }
+    
     Possession *p =[[[PossessionStore defaultStore] allPossessions] objectAtIndex:[indexPath row]];
-    [[cell textLabel] setText:[p description]];
+    [cell setPossession:p];
+    
     return cell;
 }
 
