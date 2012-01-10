@@ -11,15 +11,20 @@
 @interface Possession : NSObject <NSCoding>
 
 + (id)randomPossession;
++ (CGSize)thumbnailSize;
+
+@property(nonatomic, strong  ) NSString *possessionName;
+@property(nonatomic, strong  ) NSString *serialNumber;
+@property(nonatomic          ) int       valueInDollars;
+@property(nonatomic, strong) NSDate   *dateCreated;
+@property(nonatomic, strong  ) NSString *imageKey;
+@property(nonatomic, strong) UIImage  *thumbnail;
+@property(nonatomic, strong  ) NSData   *thumbnailData;
 
 - (id)initWithPossessionName:(NSString *)name
              valueInDollars:(int)value
                serialNumber:(NSString *)sNumber;
 
-@property (strong, nonatomic) NSString *possessionName;
-@property (strong, nonatomic) NSString *serialNumber;
-@property (nonatomic) int valueInDollars;
-@property (strong, readonly, nonatomic) NSDate *dateCreated;
-@property (strong, nonatomic) NSString *imageKey;
+- (void)setThumbnailDataFromImage:(UIImage *)image;
 
 @end

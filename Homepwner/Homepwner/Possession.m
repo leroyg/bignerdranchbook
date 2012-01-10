@@ -9,7 +9,12 @@
 #import "Possession.h"
 
 @implementation Possession
-@synthesize possessionName, serialNumber, valueInDollars, dateCreated, imageKey;
+
+@synthesize possessionName, serialNumber, valueInDollars, dateCreated, imageKey, thumbnail, thumbnailData;
+
++ (CGSize)thumbnailSize {
+    return CGSizeMake(40, 40);
+}
 
 + (id)randomPossession {
     NSArray *randomAdjectiveList = [NSArray arrayWithObjects:@"Red", @"Blue", @"Purple", nil];
@@ -64,6 +69,17 @@
                            serialNumber:@"Unknown"];
 }
 
+- (UIImage *)thumbnail {
+    if (![self thumbnailData]) {
+        return nil;
+    }
+    
+    if (!thumbnail) {
+        thumbnail = [UIImage imageWithData:thumbnailData];
+    }
+    return thumbnail;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ (%@) $%d [%@]", possessionName, serialNumber, valueInDollars, dateCreated];
 }
@@ -75,4 +91,33 @@
     [aCoder encodeObject:imageKey forKey:@"imageKey"];
     [aCoder encodeInt:valueInDollars forKey:@"valueInDollars"];
 }
+
+- (void)setThumbnailDataFromImage:(UIImage *)image {
+    CGSize originalImageSize = [image size];
+    
+    CGRect newRect;
+    newRect.origin = CGPointZero;
+    newRect.size = [[self class] thumbnailSize];
+    
+    float ratio = MAX(newRect.size.width / originalImageSize.width, newRect.size.height / originalImageSize.height);
+    
+    UIGraphicsBeginImageContext(newRect.size);
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:newRect cornerRadius:5.0];
+    [path addClip];
+    
+    CGRect projectRect;
+    projectRect.size.width = ratio * originalImageSize.width;
+    projectRect.size.height = ratio * originalImageSize.height;
+    projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2.0;
+    projectRect.origin.y = (newRect.size.width - projectRect.size.width) / 2.0;
+    [image drawInRect:projectRect];
+    
+    UIImage *small = UIGraphicsGetImageFromCurrentImageContext();
+    [self setThumbnail:small];
+    [self setThumbnailData:UIImagePNGRepresentation(small)];
+    
+    UIGraphicsEndImageContext();
+}
+                      
 @end
