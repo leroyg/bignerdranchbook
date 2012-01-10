@@ -386,7 +386,8 @@
 				9AA0B41A14BCAA150012BD2E /* Homepwner.xcdatamodel */,
 			);
 			currentVersion = 9AA0B41A14BCAA150012BD2E /* Homepwner.xcdatamodel */;
-			path = Homepwner.xcdatamodeld;
+			name = Homepwner.xcdatamodeld;
+			path = Homepwner;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
