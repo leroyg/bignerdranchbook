@@ -9,7 +9,6 @@
 #import "Possession.h"
 #import "AssetType.h"
 
-
 @implementation Possession
 
 @dynamic dateCreated;
@@ -24,6 +23,17 @@
 
 + (CGSize)thumbnailSize {
     return CGSizeMake(40, 40);
+}
+
+- (void)awakeFromFetch {
+    [super awakeFromFetch];
+    UIImage *tn = [UIImage imageWithData:[self thumbnailData]];
+    [self setPrimitiveValue:tn forKey:@"thumbnail"];
+}
+
+- (void)awakeFromInsert {
+    [super awakeFromInsert];
+    [self setDateCreated:[NSDate date]];
 }
 
 - (void)setThumbnailDataFromImage:(UIImage *)image {
