@@ -62,7 +62,7 @@
 }
 
 - (void)setPossession:(Possession *)possession {
-    [[self valueLabel] setText:[NSString stringWithFormat:@"$%d", [possession valueInDollars]]];
+    [[self valueLabel] setText:[NSString stringWithFormat:@"$%@", [possession valueInDollars]]];
     [[self nameLabel] setText:[possession possessionName]];
     [[self imageView] setImage:[possession thumbnail]];
 }

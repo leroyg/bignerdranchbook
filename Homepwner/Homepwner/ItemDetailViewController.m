@@ -62,9 +62,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [nameField setText:[[self possession] possessionName]];
     [serialNumberField setText:[[self possession] serialNumber]];
-    [valueField setText:[NSString stringWithFormat:@"%d", [[self possession] valueInDollars]]];
+    
+    if ([possession valueInDollars]) {
+        [valueField setText:[NSString stringWithFormat:@"%@", [[self possession] valueInDollars]]];        
+    } else {
+        [valueField setText:@"0"];
+    }
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
@@ -82,9 +89,10 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[self view] endEditing:YES];
-    [[self possession] setPossessionName:[nameField text]];
-    [[self possession] setSerialNumber:[serialNumberField text]];
-    [[self possession] setValueInDollars:[[valueField text] intValue]];
+    [possession setPossessionName:[nameField text]];
+    [possession setSerialNumber:[serialNumberField text]];
+    NSNumber *num = [NSNumber numberWithInt:[[valueField text] intValue]];
+    [possession setValueInDollars:num];
 }
 
 - (IBAction)save:(id)sender {

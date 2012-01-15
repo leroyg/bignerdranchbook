@@ -12,6 +12,8 @@
 
 @implementation PossessionStore
 
+@synthesize allPossessions, allAssetTypes, context, model;
+
 static PossessionStore *defaultStore = nil;
 
 + (PossessionStore *)defaultStore {
@@ -30,6 +32,21 @@ static PossessionStore *defaultStore = nil;
         return defaultStore;
     }
     self = [super init];
+    [self setModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
+    NSLog(@"Model: %@", [self model]);
+    NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self model]];
+    NSString *path = pathInDocumentDirectory(@"store.data");
+    NSURL *storeURL = [NSURL fileURLWithPath:path];
+    NSError *error = nil;
+    
+    if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        [NSException raise:@"Open failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    
+    context = [[NSManagedObjectContext alloc] init];
+    [context setPersistentStoreCoordinator:psc];
+    [context setUndoManager:nil];
+    
     return self;
 }
 
@@ -40,7 +57,16 @@ static PossessionStore *defaultStore = nil;
 
 - (Possession *)createPossession {
     [self fetchPossessionsIfNecessary];
-    Possession *p = [Possession randomPossession];
+    double order;
+    if ([[self allPossessions] count] == 0) {
+        order = 1.0;
+    } else {
+        order = [[[[self allPossessions] lastObject] orderingValue] doubleValue] + 1.0;
+    }
+    
+    NSLog(@"Adding after %d items, order = %.2f", [[self allPossessions] count], order);
+    Possession *p = [NSEntityDescription insertNewObjectForEntityForName:@"Possession" inManagedObjectContext:context];
+    [p setOrderingValue:[NSNumber numberWithDouble:order]];
     [allPossessions addObject:p];
     return p;
 }
@@ -48,6 +74,7 @@ static PossessionStore *defaultStore = nil;
 - (void)removePossession:(Possession *)p {
     NSString *key = [p imageKey];
     [[ImageStore defaultImageStore] deleteImageForKey:key];
+    [context deleteObject:p];
     [allPossessions removeObjectIdenticalTo:p];
 }
 
@@ -56,6 +83,25 @@ static PossessionStore *defaultStore = nil;
     Possession *p = [allPossessions objectAtIndex:from];
     [allPossessions removeObjectAtIndex:from];
     [allPossessions insertObject:p atIndex:to];
+    
+    double lowerBound = 0.0;
+    
+    if (to > 0) {
+        lowerBound = [[[allPossessions objectAtIndex:to - 1] orderingValue] doubleValue];
+    } else {
+        lowerBound = [[[allPossessions objectAtIndex:1] orderingValue] doubleValue] - 2.0;
+    }
+    
+    double upperBound = 0.0;
+    if (to < [allPossessions count] - 1) {
+        upperBound = [[[allPossessions objectAtIndex:to + 1] orderingValue] doubleValue];
+    } else {
+        upperBound = [[[allPossessions objectAtIndex:to - 1] orderingValue] doubleValue] + 2.0;
+    }
+    
+    NSNumber *n = [NSNumber numberWithDouble:(lowerBound + upperBound) / 2.0];
+    NSLog(@"Moving to position %@", n);
+    [p setOrderingValue:n];
 }
 
 - (NSString *)possessionArchivePath {
@@ -63,17 +109,31 @@ static PossessionStore *defaultStore = nil;
 }
 
 - (BOOL)saveChanges {
-    return [NSKeyedArchiver archiveRootObject:allPossessions toFile:[self possessionArchivePath]];
+    NSError *error = nil;
+    BOOL successful = [context save:&error];
+    if (!successful) {
+        NSLog(@"Error saving: %@", [error localizedDescription]);
+    }
+    return successful;
 }
 
 - (void)fetchPossessionsIfNecessary {
     if (!allPossessions) {
-        NSString *path = [self possessionArchivePath];
-        allPossessions = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    }
-    
-    if (!allPossessions) {
-        allPossessions = [[NSMutableArray alloc] init];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *e = [[model entitiesByName] objectForKey:@"Possession"];
+        [request setEntity:e];
+        
+        NSSortDescriptor *sd = [NSSortDescriptor sortDescriptorWithKey:@"orderingValue" ascending:YES];
+        [request setSortDescriptors:[NSArray arrayWithObject:sd]];
+        
+        NSError *error;
+        NSArray *result = [context executeFetchRequest:request error:&error];
+        
+        if (!result) {
+            [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
+        }
+        
+        [self setAllPossessions:[[NSMutableArray alloc] initWithArray:result]];
     }
 }
 @end

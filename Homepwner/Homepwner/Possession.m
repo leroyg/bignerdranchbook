@@ -7,7 +7,7 @@
 //
 
 #import "Possession.h"
-#import "AssetType.h"
+//#import "AssetType.h"
 
 @implementation Possession
 
