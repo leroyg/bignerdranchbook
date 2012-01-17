@@ -55,6 +55,20 @@ static PossessionStore *defaultStore = nil;
     return allPossessions;
 }
 
+- (NSArray *)allAssetTypes {
+    if (!allAssetTypes){
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *e = [[model entitiesByName] objectForKey:@"AssetType"];
+        [request setEntity:e];
+        NSError *error;
+        NSArray *result = [context executeFetchRequest:request error:&error];
+        if (!result) {
+            [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
+        } 
+        
+    }
+}
+
 - (Possession *)createPossession {
     [self fetchPossessionsIfNecessary];
     double order;
