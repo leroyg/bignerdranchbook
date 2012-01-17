@@ -98,6 +98,8 @@
 		9A540DB914A6C93400E2EE64 /* Possession */ = {
 			isa = PBXGroup;
 			children = (
+				9AD3E9E414BCB5D0000503C2 /* Possession.h */,
+				9AD3E9E514BCB5D0000503C2 /* Possession.m */,
 				9A07BE3314A67B1F001BB1C2 /* PossessionStore.h */,
 				9A07BE3414A67B1F001BB1C2 /* PossessionStore.m */,
 			);
@@ -154,8 +156,6 @@
 				9A28CD9B14B4FE7A006CC6F9 /* ItemsViewController */,
 				9A540DB914A6C93400E2EE64 /* Possession */,
 				9A78A41314A66EC800E8995D /* Supporting Files */,
-				9AD3E9E414BCB5D0000503C2 /* Possession.h */,
-				9AD3E9E514BCB5D0000503C2 /* Possession.m */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";

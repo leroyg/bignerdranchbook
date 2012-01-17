@@ -64,9 +64,26 @@ static PossessionStore *defaultStore = nil;
         NSArray *result = [context executeFetchRequest:request error:&error];
         if (!result) {
             [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
-        } 
-        
+        }
+        allAssetTypes = [result mutableCopy];
     }
+    
+    if ([allAssetTypes count] == 0) {
+        NSManagedObject *type;
+        
+        type = [NSEntityDescription insertNewObjectForEntityForName:@"AssetType" inManagedObjectContext:context];
+        [type setValue:@"Furniture" forKey:@"label"];
+        [allAssetTypes addObject:type];
+
+        type = [NSEntityDescription insertNewObjectForEntityForName:@"AssetType" inManagedObjectContext:context];
+        [type setValue:@"Jewelry" forKey:@"label"];
+        [allAssetTypes addObject:type];
+
+        type = [NSEntityDescription insertNewObjectForEntityForName:@"AssetType" inManagedObjectContext:context];
+        [type setValue:@"Electronics" forKey:@"label"];
+        [allAssetTypes addObject:type];
+    }
+    return allAssetTypes;
 }
 
 - (Possession *)createPossession {
