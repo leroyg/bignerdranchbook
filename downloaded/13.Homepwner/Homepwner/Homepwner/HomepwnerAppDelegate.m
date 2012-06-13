@@ -1,30 +1,36 @@
+//
+//  HomepwnerAppDelegate.m
+//  Homepwner
+//
+//  Created by joeconway on 8/30/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
+
 #import "HomepwnerAppDelegate.h"
 #import "ItemsViewController.h"
 
 @implementation HomepwnerAppDelegate
 
+@synthesize window = _window;
 
-@synthesize window=_window;
-
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    
+    // Create a ItemsViewController
     ItemsViewController *itemsViewController = [[ItemsViewController alloc] init];
     
     // Create an instance of a UINavigationController
     // its stack contains only itemsViewController
     UINavigationController *navController = [[UINavigationController alloc]
-                                             initWithRootViewController:itemsViewController];
-    
-    // You can now release the itemsViewController here,
-    // UINavigationController will retain it
-    [itemsViewController release];
-    
+            initWithRootViewController:itemsViewController];
+            
     // Place navigation controller's view in the window hierarchy
     [[self window] setRootViewController:navController];
-    
-    [navController release];
-    
+
+
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -66,12 +72,6 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-}
-
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
 }
 
 @end

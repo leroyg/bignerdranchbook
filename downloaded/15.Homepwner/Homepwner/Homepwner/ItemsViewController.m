@@ -1,39 +1,51 @@
-#import "ItemsViewController.h"
-#import "PossessionStore.h"
-#import "Possession.h"
-#import "ItemDetailViewController.h"
+//
+//  ItemsViewController.m
+//  Homepwner
+//
+//  Created by joeconway on 8/30/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
 
+#import "ItemsViewController.h"
+#import "BNRItemStore.h"
+#import "BNRItem.h"
+#import "HomepwnerItemCell.h"
+// new 
+#import "BNRImageStore.h"
+#import "ImageViewController.h"
+//
 @implementation ItemsViewController
 
-- (id)init
+- (id)init 
 {
+    // Call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
-    
     if (self) {
-        // Create a new bar button item that will send
-        // addNewPossession: to ItemsViewController
-        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] 
-                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-                                target:self 
-                                action:@selector(addNewPossession:)];
+        UINavigationItem *n = [self navigationItem];
         
+        [n setTitle:@"Homepwner"];
+
+        // Create a new bar button item that will send
+        // addNewItem: to ItemsViewController
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] 
+                        initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+                                             target:self 
+                                             action:@selector(addNewItem:)];
+
         // Set this bar button item as the right item in the navigationItem
         [[self navigationItem] setRightBarButtonItem:bbi];
-        
-        // The navigationItem retains its buttons, so bbi can be released 
-        [bbi release];
-        
-        // Set the title of the navigation item 
-        [[self navigationItem] setTitle:@"Homepwner"];
-    
-        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-    }
-    return  self;
-}
 
-- (id)initWithStyle:(UITableViewStyle)style
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];        
+    }
+    return self;
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)io
 {
-    return [self init];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        return YES;
+    } else {
+        return (io == UIInterfaceOrientationPortrait);
+    } 
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -42,57 +54,60 @@
     [[self tableView] reloadData];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)io
+- (void)viewDidLoad
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        return (io == UIInterfaceOrientationPortrait);
-    }
+    [super viewDidLoad];
+    
+    UINib *nib = [UINib nibWithNibName:@"HomepwnerItemCell" bundle:nil];
+    
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"HomepwnerItemCell"];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section 
+- (IBAction)addNewItem:(id)sender
 {
-    return [[[PossessionStore defaultStore] allPossessions] count];
+    // Create a new BNRItem and add it to the store
+    BNRItem *newItem = [[BNRItemStore defaultStore] createItem];
+
+    DetailViewController *detailViewController = 
+            [[DetailViewController alloc] initForNewItem:YES];
+    
+    [detailViewController setItem:newItem];
+
+    [detailViewController setDismissBlock:^{
+        [[self tableView] reloadData];
+    }];
+
+    UINavigationController *navController = [[UINavigationController alloc] 
+                                initWithRootViewController:detailViewController];
+        
+    [navController setModalPresentationStyle:UIModalPresentationFormSheet];        
+    [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    
+    [self presentViewController:navController animated:YES completion:nil];
+}  
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    return [self init];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView 
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)tableView 
+    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
+           toIndexPath:(NSIndexPath *)toIndexPath 
 {
-    // Check for a reusable cell first, use that if it exists
-    UITableViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    
-    // If there is no reusable cell of this type, create a new one
-    if (!cell) {
-        cell = [[[UITableViewCell alloc]
-                 initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:@"UITableViewCell"] autorelease];
-    }
-    
-    // Set the text on the cell with the description of the possession
-    // that is at the nth index of possessions, where n = row this cell
-    // will appear in on the tableview
-    Possession *p = [[[PossessionStore defaultStore] allPossessions]
-                     objectAtIndex:[indexPath row]];
-    
-    [[cell textLabel] setText:[p description]];
-    
-    return cell;
+    [[BNRItemStore defaultStore] moveItemAtIndex:[fromIndexPath row]
+                                         toIndex:[toIndexPath row]];
 }
 
 - (void)tableView:(UITableView *)aTableView 
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ItemDetailViewController *detailViewController = 
-        [[[ItemDetailViewController alloc] initForNewItem:NO] autorelease];    
-
-    NSArray *possessions = [[PossessionStore defaultStore] allPossessions];
+    DetailViewController *detailViewController = [[DetailViewController alloc] initForNewItem:NO];
     
-    // Give detail view controller a pointer to the possession object in row
-    [detailViewController setPossession:
-                 [possessions objectAtIndex:[indexPath row]]];
+    NSArray *items = [[BNRItemStore defaultStore] allItems];
+    BNRItem *selectedItem = [items objectAtIndex:[indexPath row]];
+
+    // Give detail view controller a pointer to the item object in row
+    [detailViewController setItem:selectedItem];
     
     // Push it onto the top of the navigation controller's stack
     [[self navigationController] pushViewController:detailViewController
@@ -106,51 +121,78 @@
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        PossessionStore *ps = [PossessionStore defaultStore];
-        NSArray *possessions = [ps allPossessions];
-        Possession *p = [possessions objectAtIndex:[indexPath row]];
-        [ps removePossession:p];
-        
+        BNRItemStore *ps = [BNRItemStore defaultStore];
+        NSArray *items = [ps allItems];
+        BNRItem *p = [items objectAtIndex:[indexPath row]];
+        [ps removeItem:p];
+
         // We also remove that row from the table view with an animation
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                         withRowAnimation:YES];
+                         withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
-- (void)tableView:(UITableView *)tableView 
-    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
-           toIndexPath:(NSIndexPath *)toIndexPath 
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
-    [[PossessionStore defaultStore] movePossessionAtIndex:[fromIndexPath row]
-                                                  toIndex:[toIndexPath row]];
+    return [[[BNRItemStore defaultStore] allItems] count];
 }
 
-- (void)itemDetailViewControllerWillDismiss:(ItemDetailViewController *)vc
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[self tableView] reloadData];
+    BNRItem *p = [[[BNRItemStore defaultStore] allItems]
+                                    objectAtIndex:[indexPath row]];
+    
+    HomepwnerItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepwnerItemCell"];
+
+    [cell setController:self];
+    [cell setTableView:tableView];
+
+    [[cell nameLabel] setText:[p itemName]];
+    [[cell serialNumberLabel] setText:[p serialNumber]];
+    [[cell valueLabel] setText:[NSString stringWithFormat:@"$%d", [p valueInDollars]]];
+    
+    [[cell thumbnailView] setImage:[p thumbnail]];
+
+    return cell;
 }
 
-- (IBAction)addNewPossession:(id)sender
+// New
+- (void)showImage:(id)sender atIndexPath:(NSIndexPath *)ip 
 {
-    Possession *newPossession = [[PossessionStore defaultStore] createPossession];
-    ItemDetailViewController *detailViewController = 
-        [[ItemDetailViewController alloc] initForNewItem:YES];
-    
-    [detailViewController setDelegate:self];
-    [detailViewController setPossession:newPossession];
-    
-    UINavigationController *navController = [[UINavigationController alloc] 
-                                             initWithRootViewController:detailViewController];
-    
-    [detailViewController release];
-    
-    [navController setModalPresentationStyle:UIModalPresentationFormSheet];
-    [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    
-    // navController is retained by self when presented
-    [self presentModalViewController:navController animated:YES];
-    
-    [navController release];
-}
+    NSLog(@"Going to show the image for %@", ip);
 
+    // Get the item for the index path
+    BNRItem *i = [[[BNRItemStore defaultStore] allItems] objectAtIndex:[ip row]];
+
+    NSString *imageKey = [i imageKey];
+
+    // If there is no image, we don't need to display anything
+    UIImage *img = [[BNRImageStore defaultImageStore] imageForKey:imageKey];
+    if(!img)
+        return;
+    
+    // Make a rectangle that the frame of the button relative to 
+    // our table view
+    CGRect rect = [[self view] convertRect:[sender bounds] fromView:sender];
+    
+    // Create a new ImageViewController and set its image
+    ImageViewController *ivc = [[ImageViewController alloc] init];
+    [ivc setImage:img];
+    
+    // Present a 600x600 popover 
+    imagePopover = [[UIPopoverController alloc] initWithContentViewController:ivc];
+    [imagePopover setDelegate:self];
+    [imagePopover setPopoverContentSize:CGSizeMake(600, 600)];
+    [imagePopover presentPopoverFromRect:rect 
+                                  inView:[self view] 
+                permittedArrowDirections:UIPopoverArrowDirectionAny 
+                                animated:YES];
+}
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    [imagePopover dismissPopoverAnimated:YES];
+    imagePopover = nil;
+}
 @end

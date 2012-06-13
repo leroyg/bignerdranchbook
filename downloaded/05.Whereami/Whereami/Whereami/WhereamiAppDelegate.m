@@ -1,105 +1,67 @@
+//
+//  WhereamiAppDelegate.m
+//  Whereami
+//
+//  Created by joeconway on 7/31/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
 #import "WhereamiAppDelegate.h"
-#import "MapPoint.h"
+
+#import "WhereamiViewController.h"
 
 @implementation WhereamiAppDelegate
 
-@synthesize window=_window;
+@synthesize window = _window;
+@synthesize viewController = _viewController;
 
-- (BOOL)application:(UIApplication *)application 
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    locationManager = [[CLLocationManager alloc] init];
-    [locationManager setDelegate:self];
-    
-    [locationManager setDistanceFilter:kCLDistanceFilterNone];
-    [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    
-    // [locationManager startUpdatingLocation];
-    [worldView setShowsUserLocation:YES];
-    
-    // This line may say self.window, don't worry about that
-    [[self window] makeKeyAndVisible];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.viewController = [[WhereamiViewController alloc] initWithNibName:@"WhereamiViewController" bundle:nil]; 
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
-- (void)locationManager:(CLLocationManager *)manager 
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
+- (void)applicationWillResignActive:(UIApplication *)application
 {
-    NSLog(@"%@", newLocation);
-    
-    // How many seconds ago was this new location created?
-    NSTimeInterval t = [[newLocation timestamp] timeIntervalSinceNow];
-    
-    // CLLocationManagers will return the last found location of the
-    // device first, you don't want that data in this case.
-    // If this location was made more than 3 minutes ago, ignore it.
-    if (t < -180) {
-        // This is cached data, you don't want it, keep looking
-        return;
-    }
-    [self foundLocation:newLocation];
+    /*
+     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+     */
 }
 
-- (void)locationManager:(CLLocationManager *)manager 
-       didFailWithError:(NSError *)error
+- (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    NSLog(@"Could not find location: %@", error);
+    /*
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+     */
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)u
+- (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    CLLocationCoordinate2D loc = [u coordinate];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-    [worldView setRegion:region animated:YES];
+    /*
+     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+     */
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)tf
+- (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [self findLocation];
- 
-    [tf resignFirstResponder];
-    return YES;
+    /*
+     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+     */
 }
 
-- (void)findLocation
+- (void)applicationWillTerminate:(UIApplication *)application
 {
-    [locationManager startUpdatingLocation];
-    [activityIndicator startAnimating];
-    [locationTitleField setHidden:YES];
-}
-
-- (void)foundLocation:(CLLocation *)loc
-{
-    CLLocationCoordinate2D coord = [loc coordinate];
-    
-    // Create an instance of MapPoint with the current data
-    MapPoint *mp =[[MapPoint alloc] initWithCoordinate:coord
-                                                 title:[locationTitleField text]];
-    // Add it to the map view
-    [worldView addAnnotation:mp];
-    
-    // MKMapView retains its annotations, we can release
-    [mp release];
-    
-    // Zoom the region to this location
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
-    [worldView setRegion:region animated:YES];
-    
-    [locationTitleField setText:@""];
-    [activityIndicator stopAnimating];
-    [locationTitleField setHidden:NO];
-    [locationManager stopUpdatingLocation];
-}
-
-- (void)dealloc
-{
-    if ([locationManager delegate] == self)
-        [locationManager setDelegate:nil];
-    
-    [locationManager release];
-    [_window release];
-    [super dealloc];
+    /*
+     Called when the application is about to terminate.
+     Save data if appropriate.
+     See also applicationDidEnterBackground:.
+     */
 }
 
 @end

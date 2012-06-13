@@ -1,21 +1,19 @@
+//
+//  WhereamiAppDelegate.h
+//  Whereami
+//
+//  Created by joeconway on 7/31/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 
-@interface WhereamiAppDelegate : NSObject
-    <UIApplicationDelegate, CLLocationManagerDelegate, MKMapViewDelegate,
-    UITextFieldDelegate>
-{
-    CLLocationManager *locationManager;
-    
-    IBOutlet MKMapView *worldView;
-    IBOutlet UIActivityIndicatorView *activityIndicator;
-    IBOutlet UITextField *locationTitleField;
-}
+@class WhereamiViewController;
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@interface WhereamiAppDelegate : UIResponder <UIApplicationDelegate>
 
-- (void)findLocation;
-- (void)foundLocation:(CLLocation *)loc;
+@property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) WhereamiViewController *viewController;
 
 @end

@@ -1,36 +1,53 @@
+//
+//  ItemsViewController.m
+//  Homepwner
+//
+//  Created by joeconway on 8/30/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
+
 #import "ItemsViewController.h"
-#import "PossessionStore.h"
-#import "Possession.h"
-#import "ItemDetailViewController.h"
+#import "BNRItemStore.h"
+#import "BNRItem.h"
 
 @implementation ItemsViewController
-
-- (id)init
+- (id)init 
 {
+    // Call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
-    
     if (self) {
-        // Create a new bar button item that will send
-        // addNewPossession: to ItemsViewController
-        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] 
-                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-                                target:self 
-                                action:@selector(addNewPossession:)];
+        UINavigationItem *n = [self navigationItem];
         
+        [n setTitle:@"Homepwner"];
+
+        // Create a new bar button item that will send
+        // addNewItem: to ItemsViewController
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] 
+                        initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+                                             target:self 
+                                             action:@selector(addNewItem:)];
+
         // Set this bar button item as the right item in the navigationItem
         [[self navigationItem] setRightBarButtonItem:bbi];
-        
-        // The navigationItem retains its buttons, so bbi can be released 
-        [bbi release];
-        
-        // Set the title of the navigation item 
-        [[self navigationItem] setTitle:@"Homepwner"];
-    
+
         [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
-    return  self;
+    return self;
 }
+- (IBAction)addNewItem:(id)sender
+{
+    // Create a new BNRItem and add it to the store
+    BNRItem *newItem = [[BNRItemStore defaultStore] createItem];
 
+    // Figure out where that item is in the array 
+    int lastRow = [[[BNRItemStore defaultStore] allItems] indexOfObject:newItem];
+        
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+
+    // Insert this new row into the table.
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
+                            withRowAnimation:UITableViewRowAnimationTop];
+}  
 - (id)initWithStyle:(UITableViewStyle)style
 {
     return [self init];
@@ -42,48 +59,25 @@
     [[self tableView] reloadData];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section 
-{
-    return [[[PossessionStore defaultStore] allPossessions] count];
-}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView 
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)tableView 
+    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
+           toIndexPath:(NSIndexPath *)toIndexPath 
 {
-    // Check for a reusable cell first, use that if it exists
-    UITableViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    
-    // If there is no reusable cell of this type, create a new one
-    if (!cell) {
-        cell = [[[UITableViewCell alloc]
-                 initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:@"UITableViewCell"] autorelease];
-    }
-    
-    // Set the text on the cell with the description of the possession
-    // that is at the nth index of possessions, where n = row this cell
-    // will appear in on the tableview
-    Possession *p = [[[PossessionStore defaultStore] allPossessions]
-                     objectAtIndex:[indexPath row]];
-    
-    [[cell textLabel] setText:[p description]];
-    
-    return cell;
+    [[BNRItemStore defaultStore] moveItemAtIndex:[fromIndexPath row]
+                                         toIndex:[toIndexPath row]];
 }
 
 - (void)tableView:(UITableView *)aTableView 
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ItemDetailViewController *detailViewController = 
-    [[[ItemDetailViewController alloc] init] autorelease];
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
     
-    NSArray *possessions = [[PossessionStore defaultStore] allPossessions];
-    
-    // Give detail view controller a pointer to the possession object in row
-    [detailViewController setPossession:
-                 [possessions objectAtIndex:[indexPath row]]];
+    NSArray *items = [[BNRItemStore defaultStore] allItems];
+    BNRItem *selectedItem = [items objectAtIndex:[indexPath row]];
+
+    // Give detail view controller a pointer to the item object in row
+    [detailViewController setItem:selectedItem];
     
     // Push it onto the top of the navigation controller's stack
     [[self navigationController] pushViewController:detailViewController
@@ -97,29 +91,42 @@
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        PossessionStore *ps = [PossessionStore defaultStore];
-        NSArray *possessions = [ps allPossessions];
-        Possession *p = [possessions objectAtIndex:[indexPath row]];
-        [ps removePossession:p];
-        
+        BNRItemStore *ps = [BNRItemStore defaultStore];
+        NSArray *items = [ps allItems];
+        BNRItem *p = [items objectAtIndex:[indexPath row]];
+        [ps removeItem:p];
+
         // We also remove that row from the table view with an animation
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                         withRowAnimation:YES];
+                         withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
-- (void)tableView:(UITableView *)tableView 
-    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
-           toIndexPath:(NSIndexPath *)toIndexPath 
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
-    [[PossessionStore defaultStore] movePossessionAtIndex:[fromIndexPath row]
-                                                  toIndex:[toIndexPath row]];
+    return [[[BNRItemStore defaultStore] allItems] count];
 }
-
-- (IBAction)addNewPossession:(id)sender
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[PossessionStore defaultStore] createPossession];
-    [[self tableView] reloadData];
-}
+    // Create an instance of UITableViewCell, with default appearance
+    // Check for a reusable cell first, use that if it exists
+    UITableViewCell *cell =
+        [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
 
+    // If there is no reusable cell of this type, create a new one
+    if (!cell) {
+        cell = [[UITableViewCell alloc]
+                    initWithStyle:UITableViewCellStyleDefault
+                  reuseIdentifier:@"UITableViewCell"];
+    }
+    // Set the text on the cell with the description of the item
+    // that is at the nth index of items, where n = row this cell
+    // will appear in on the tableview
+    BNRItem *p = [[[BNRItemStore defaultStore] allItems]
+                                    objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[p description]];
+    return cell;
+}
 @end

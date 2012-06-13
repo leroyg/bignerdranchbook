@@ -1,30 +1,37 @@
+//
+//  HomepwnerAppDelegate.m
+//  Homepwner
+//
+//  Created by joeconway on 8/30/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
+
 #import "HomepwnerAppDelegate.h"
 #import "ItemsViewController.h"
+#import "BNRItemStore.h"
 
 @implementation HomepwnerAppDelegate
 
+@synthesize window = _window;
 
-@synthesize window=_window;
-
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    
+    // Create a ItemsViewController
     ItemsViewController *itemsViewController = [[ItemsViewController alloc] init];
     
     // Create an instance of a UINavigationController
     // its stack contains only itemsViewController
     UINavigationController *navController = [[UINavigationController alloc]
-                                             initWithRootViewController:itemsViewController];
-    
-    // You can now release the itemsViewController here,
-    // UINavigationController will retain it
-    [itemsViewController release];
-    
+            initWithRootViewController:itemsViewController];
+            
     // Place navigation controller's view in the window hierarchy
     [[self window] setRootViewController:navController];
-    
-    [navController release];
-    
+
+
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -39,10 +46,12 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
+    BOOL success = [[BNRItemStore defaultStore] saveChanges];
+    if(success) {
+        NSLog(@"Saved all of the BNRItems");
+    } else {
+        NSLog(@"Could not save any of the BNRItems");
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -66,12 +75,6 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-}
-
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
 }
 
 @end

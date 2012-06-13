@@ -1,11 +1,18 @@
+//
+//  RSSChannel.m
+//  Nerdfeed
+//
+//  Created by joeconway on 9/12/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
+
 #import "RSSChannel.h"
 #import "RSSItem.h"
 
 @implementation RSSChannel
+@synthesize items, title, infoString, parentParserDelegate;
 
-@synthesize items, title, shortDescription, parentParserDelegate;
-
-- (id)init
+- (id)init 
 {
     self = [super init];
     
@@ -16,6 +23,43 @@
     }
     
     return self;
+}
+
+- (void)trimItemTitles
+{
+    // Create a regular expression with the pattern: Author
+    NSRegularExpression *reg = 
+                    [[NSRegularExpression alloc] initWithPattern:@".* :: (.*) :: .*"
+                                                         options:0 
+                                                           error:nil];
+    // Loop through every title of the items in channel
+    for(RSSItem *i in items) {
+        NSString *itemTitle = [i title];
+        
+        // Find matches in the title string. The range 
+        // argument specifies how much of the title to search;
+        // in this case, all of it.
+        NSArray *matches = [reg matchesInString:itemTitle
+                                        options:0 
+                                          range:NSMakeRange(0, [itemTitle length])];
+
+        // If there was a match...
+        if([matches count] > 0) {
+            // Print the location of the match in the string and the string
+            NSTextCheckingResult *result = [matches objectAtIndex:0];
+            NSRange r = [result range];
+            NSLog(@"Match at {%d, %d} for %@!", r.location, r.length, itemTitle);
+            // One capture group, so two ranges, let's verify
+            if([result numberOfRanges] == 2) {
+                
+                // Pull out the 2nd range, which will be the capture group
+                NSRange r = [result rangeAtIndex:1];
+                
+                // Set the title of the item to the string within the capture group
+                [i setTitle:[itemTitle substringWithRange:r]];
+            }        
+        }
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser 
@@ -32,12 +76,11 @@
     }
     else if ([elementName isEqual:@"description"]) {
         currentString = [[NSMutableString alloc] init];
-        [self setShortDescription:currentString];
-    }
-    else if ([elementName isEqual:@"item"]) {
+        [self setInfoString:currentString];
+    } else if ([elementName isEqual:@"item"]) {
         // When we find an item, create an instance of RSSItem
         RSSItem *entry = [[RSSItem alloc] init];
-        
+
         // Set up its parent as ourselves so we can regain control of the parser
         [entry setParentParserDelegate:self];
         
@@ -46,15 +89,12 @@
         
         // Add the item to our array and release our hold on it
         [items addObject:entry];
-        [entry release];
     }
 }
-
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)str
 {
     [currentString appendString:str];
 }
-
 - (void)parser:(NSXMLParser *)parser 
  didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI 
@@ -63,26 +103,15 @@
     // If we were in an element that we were collecting the string for,
     // this appropriately releases our hold on it and the permanent ivar keeps 
     // ownership of it. If we weren't parsing such an element, currentString
-    // is nil and this message does nothing.
-    [currentString release];
+    // is nil already.
     currentString = nil;
-    
+
     // If the element that ended was the channel, give up control to
     // who gave us control in the first place
-    if ([elementName isEqual:@"channel"])
+    if ([elementName isEqual:@"channel"]) {
         [parser setDelegate:parentParserDelegate];
-}
-
-- (void)dealloc
-{
-    // items is owned by this instance, must release
-    [items release];
-    
-    // These ivars have the retain property attribute, must be released 
-    [title release];
-    [shortDescription release];
-    
-    [super dealloc];
+        [self trimItemTitles];
+    }
 }
 
 @end

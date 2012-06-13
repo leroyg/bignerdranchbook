@@ -1,19 +1,23 @@
-#import <Foundation/Foundation.h>
+//
+//  RSSChannel.h
+//  Nerdfeed
+//
+//  Created by joeconway on 9/12/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
 
+#import <Foundation/Foundation.h>
 
 @interface RSSChannel : NSObject <NSXMLParserDelegate>
 {
-    NSString *title;
-    NSString *shortDescription;
-    NSMutableArray *items;
     NSMutableString *currentString;
-    
-    id parentParserDelegate;
 }
-@property (nonatomic, assign) id parentParserDelegate;
+@property (nonatomic, weak) id parentParserDelegate;
 
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *shortDescription;
-@property (nonatomic, readonly) NSMutableArray *items;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *infoString;
+@property (nonatomic, readonly, strong) NSMutableArray *items;
+
+- (void)trimItemTitles;
 
 @end
